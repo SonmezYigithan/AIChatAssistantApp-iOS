@@ -9,23 +9,33 @@
 /* Begin PBXBuildFile section */
 		C120B6A02B9B5C9A00422CE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120B69F2B9B5C9A00422CE5 /* AppDelegate.swift */; };
 		C120B6A22B9B5C9A00422CE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120B6A12B9B5C9A00422CE5 /* SceneDelegate.swift */; };
-		C120B6A42B9B5C9A00422CE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120B6A32B9B5C9A00422CE5 /* ViewController.swift */; };
-		C120B6A72B9B5C9A00422CE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C120B6A52B9B5C9A00422CE5 /* Main.storyboard */; };
 		C120B6AA2B9B5C9A00422CE5 /* AIChatApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C120B6A82B9B5C9A00422CE5 /* AIChatApp.xcdatamodeld */; };
 		C120B6AC2B9B5C9C00422CE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C120B6AB2B9B5C9C00422CE5 /* Assets.xcassets */; };
 		C120B6AF2B9B5C9C00422CE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C120B6AD2B9B5C9C00422CE5 /* LaunchScreen.storyboard */; };
+		C120B6B92B9B5CBB00422CE5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120B6B82B9B5CBB00422CE5 /* HomeView.swift */; };
+		C120B6BC2B9B5D9B00422CE5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C120B6BB2B9B5D9B00422CE5 /* Alamofire */; };
+		C120B6BE2B9B5D9B00422CE5 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = C120B6BD2B9B5D9B00422CE5 /* AlamofireDynamic */; };
+		C120B6C12B9B5DA400422CE5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C120B6C02B9B5DA400422CE5 /* SnapKit */; };
+		C120B6C32B9B5DA400422CE5 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = C120B6C22B9B5DA400422CE5 /* SnapKit-Dynamic */; };
+		C120B6C52B9B60FB00422CE5 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120B6C42B9B60FB00422CE5 /* TabBar.swift */; };
+		C120B6C92B9B61EC00422CE5 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120B6C82B9B61EC00422CE5 /* StoreView.swift */; };
+		C120B6CB2B9B621800422CE5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120B6CA2B9B621800422CE5 /* SettingsView.swift */; };
+		C120B6CD2B9B670C00422CE5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120B6CC2B9B670C00422CE5 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C120B69C2B9B5C9A00422CE5 /* AIChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C120B69F2B9B5C9A00422CE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C120B6A12B9B5C9A00422CE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C120B6A32B9B5C9A00422CE5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C120B6A62B9B5C9A00422CE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C120B6A92B9B5C9A00422CE5 /* AIChatApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AIChatApp.xcdatamodel; sourceTree = "<group>"; };
 		C120B6AB2B9B5C9C00422CE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C120B6AE2B9B5C9C00422CE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C120B6B02B9B5C9C00422CE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C120B6B82B9B5CBB00422CE5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		C120B6C42B9B60FB00422CE5 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		C120B6C82B9B61EC00422CE5 /* StoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
+		C120B6CA2B9B621800422CE5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C120B6CC2B9B670C00422CE5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +43,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C120B6C12B9B5DA400422CE5 /* SnapKit in Frameworks */,
+				C120B6BC2B9B5D9B00422CE5 /* Alamofire in Frameworks */,
+				C120B6BE2B9B5D9B00422CE5 /* AlamofireDynamic in Frameworks */,
+				C120B6C32B9B5DA400422CE5 /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,16 +72,59 @@
 		C120B69E2B9B5C9A00422CE5 /* AIChatApp */ = {
 			isa = PBXGroup;
 			children = (
+				C120B6B62B9B5CA800422CE5 /* Modules */,
 				C120B69F2B9B5C9A00422CE5 /* AppDelegate.swift */,
 				C120B6A12B9B5C9A00422CE5 /* SceneDelegate.swift */,
-				C120B6A32B9B5C9A00422CE5 /* ViewController.swift */,
-				C120B6A52B9B5C9A00422CE5 /* Main.storyboard */,
 				C120B6AB2B9B5C9C00422CE5 /* Assets.xcassets */,
 				C120B6AD2B9B5C9C00422CE5 /* LaunchScreen.storyboard */,
 				C120B6B02B9B5C9C00422CE5 /* Info.plist */,
 				C120B6A82B9B5C9A00422CE5 /* AIChatApp.xcdatamodeld */,
 			);
 			path = AIChatApp;
+			sourceTree = "<group>";
+		};
+		C120B6B62B9B5CA800422CE5 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				C120B6CE2B9B72F600422CE5 /* Chat */,
+				C120B6B72B9B5CAC00422CE5 /* Home */,
+				C120B6C72B9B61DF00422CE5 /* Store */,
+				C120B6C62B9B61D600422CE5 /* Settings */,
+				C120B6C42B9B60FB00422CE5 /* TabBar.swift */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		C120B6B72B9B5CAC00422CE5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C120B6B82B9B5CBB00422CE5 /* HomeView.swift */,
+				C120B6CC2B9B670C00422CE5 /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C120B6C62B9B61D600422CE5 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C120B6CA2B9B621800422CE5 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		C120B6C72B9B61DF00422CE5 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				C120B6C82B9B61EC00422CE5 /* StoreView.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		C120B6CE2B9B72F600422CE5 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,6 +143,12 @@
 			dependencies = (
 			);
 			name = AIChatApp;
+			packageProductDependencies = (
+				C120B6BB2B9B5D9B00422CE5 /* Alamofire */,
+				C120B6BD2B9B5D9B00422CE5 /* AlamofireDynamic */,
+				C120B6C02B9B5DA400422CE5 /* SnapKit */,
+				C120B6C22B9B5DA400422CE5 /* SnapKit-Dynamic */,
+			);
 			productName = AIChatApp;
 			productReference = C120B69C2B9B5C9A00422CE5 /* AIChatApp.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +177,10 @@
 				Base,
 			);
 			mainGroup = C120B6932B9B5C9A00422CE5;
+			packageReferences = (
+				C120B6BA2B9B5D9B00422CE5 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				C120B6BF2B9B5DA400422CE5 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = C120B69D2B9B5C9A00422CE5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -130,7 +197,6 @@
 			files = (
 				C120B6AF2B9B5C9C00422CE5 /* LaunchScreen.storyboard in Resources */,
 				C120B6AC2B9B5C9C00422CE5 /* Assets.xcassets in Resources */,
-				C120B6A72B9B5C9A00422CE5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,24 +207,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C120B6A42B9B5C9A00422CE5 /* ViewController.swift in Sources */,
+				C120B6CB2B9B621800422CE5 /* SettingsView.swift in Sources */,
 				C120B6AA2B9B5C9A00422CE5 /* AIChatApp.xcdatamodeld in Sources */,
 				C120B6A02B9B5C9A00422CE5 /* AppDelegate.swift in Sources */,
+				C120B6CD2B9B670C00422CE5 /* HomeViewModel.swift in Sources */,
+				C120B6B92B9B5CBB00422CE5 /* HomeView.swift in Sources */,
 				C120B6A22B9B5C9A00422CE5 /* SceneDelegate.swift in Sources */,
+				C120B6C92B9B61EC00422CE5 /* StoreView.swift in Sources */,
+				C120B6C52B9B60FB00422CE5 /* TabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C120B6A52B9B5C9A00422CE5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C120B6A62B9B5C9A00422CE5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C120B6AD2B9B5C9C00422CE5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -301,7 +363,6 @@
 				INFOPLIST_FILE = AIChatApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -329,7 +390,6 @@
 				INFOPLIST_FILE = AIChatApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -367,6 +427,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C120B6BA2B9B5D9B00422CE5 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.0;
+			};
+		};
+		C120B6BF2B9B5DA400422CE5 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C120B6BB2B9B5D9B00422CE5 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C120B6BA2B9B5D9B00422CE5 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		C120B6BD2B9B5D9B00422CE5 /* AlamofireDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C120B6BA2B9B5D9B00422CE5 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = AlamofireDynamic;
+		};
+		C120B6C02B9B5DA400422CE5 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C120B6BF2B9B5DA400422CE5 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		C120B6C22B9B5DA400422CE5 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C120B6BF2B9B5DA400422CE5 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		C120B6A82B9B5C9A00422CE5 /* AIChatApp.xcdatamodeld */ = {
