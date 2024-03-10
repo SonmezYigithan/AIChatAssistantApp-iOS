@@ -7,10 +7,22 @@
 
 import UIKit
 
-class ChatView: UIViewController {
+final class ChatView: UIViewController {
+    //MARK: - Properties
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareView()
+    }
+    
+    private func prepareView() {
         view.backgroundColor = .systemBackground
         title = "Chat"
+        
+        applyConstraints()
+    }
+    
+    private func applyConstraints() {
+        
     }
 }

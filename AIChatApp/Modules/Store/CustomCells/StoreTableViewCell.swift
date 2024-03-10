@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StoreTableViewCell: UITableViewCell {
+final class StoreTableViewCell: UITableViewCell {
     // MARK: - Properties
     
     static let identifier = "StoreTableViewCell"
@@ -20,11 +20,30 @@ class StoreTableViewCell: UITableViewCell {
         return image
     }()
     
-    private let label: UILabel = {
+    private let aiNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Heres your lovely doctor who takes care of you"
+        label.text = "Doctor"
+        label.font = .boldSystemFont(ofSize: 17)
+        return label
+    }()
+    
+    private let aiDescriptionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Here's your lovely doctor who takes care of you"
+        label.font = .systemFont(ofSize: 14)
+        label.textColor = .customGrayText
         label.numberOfLines = 2
         return label
+    }()
+    
+    private let button: UIButton = {
+        let button = UIButton()
+        button.setTitle("TRY", for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 17)
+        button.setTitleColor(.customGreenText, for: .normal)
+        button.layer.cornerRadius = 15
+        button.backgroundColor = .customGreenBackground
+        return button
     }()
     
     // MARK: - LifeCycle
@@ -40,7 +59,9 @@ class StoreTableViewCell: UITableViewCell {
     
     private func prepareView() {
         addSubview(image)
-        addSubview(label)
+        addSubview(aiNameLabel)
+        addSubview(aiDescriptionLabel)
+        addSubview(button)
         
         applyConstraints()
     }
@@ -49,13 +70,27 @@ class StoreTableViewCell: UITableViewCell {
         image.snp.makeConstraints { make in
             make.centerY.equalTo(snp.centerY)
             make.height.equalTo(50)
+            make.width.equalTo(50)
             make.leading.equalTo(snp.leading).offset(15)
         }
         
-        label.snp.makeConstraints { make in
-            make.centerY.equalTo(snp.centerY)
+        aiNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(snp.top).offset(15)
             make.leading.equalTo(image.snp.trailing).offset(15)
+            make.trailing.equalTo(button.snp.leading).offset(-15)
+        }
+        
+        aiDescriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(aiNameLabel.snp.bottom).offset(3)
+            make.leading.equalTo(image.snp.trailing).offset(15)
+            make.trailing.equalTo(button.snp.leading).offset(-15)
+        }
+        
+        button.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-15)
+            make.width.equalTo(60)
+            make.height.equalTo(35)
+            make.centerY.equalToSuperview()
         }
     }
 }

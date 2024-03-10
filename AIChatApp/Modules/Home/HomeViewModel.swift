@@ -17,7 +17,7 @@ protocol HomeViewModelProtocol {
     func cameraButtonClicked()
 }
 
-class HomeViewModel {
+final class HomeViewModel {
     weak var view: HomeViewProtocol?
     
     init(view: HomeViewProtocol) {

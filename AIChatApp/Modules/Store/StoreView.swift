@@ -9,6 +9,7 @@ import UIKit
 
 final class StoreView: UIViewController {
     // MARK: - Properties
+    private let collectionViewHeader = StoreCollectionViewHeader()
     
     private let collectionView: UICollectionView = {
         let flow = UICollectionViewFlowLayout()
@@ -23,6 +24,8 @@ final class StoreView: UIViewController {
         let tableView = UITableView()
         tableView.showsVerticalScrollIndicator = false
         tableView.register(StoreTableViewCell.self, forCellReuseIdentifier: StoreTableViewCell.identifier)
+        tableView.register(StoreTableViewHeader.self, forHeaderFooterViewReuseIdentifier: StoreTableViewHeader.identifier)
+        tableView.sectionHeaderTopPadding = 0
         return tableView
     }()
     
@@ -58,6 +61,7 @@ final class StoreView: UIViewController {
         
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
+        stackView.addArrangedSubview(collectionViewHeader)
         stackView.addArrangedSubview(collectionView)
         stackView.addArrangedSubview(tableView)
         view.addSubview(spinner)
@@ -94,12 +98,17 @@ final class StoreView: UIViewController {
         
         collectionView.snp.makeConstraints { make in
             make.width.equalToSuperview()
-            make.height.equalTo(100)
+            make.height.equalTo(300)
         }
- 
+        
         tableView.snp.makeConstraints { make in
             make.height.equalTo(0)
             make.width.equalToSuperview()
+        }
+        
+        collectionViewHeader.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalTo(70)
         }
     }
 }
@@ -111,19 +120,36 @@ extension StoreView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoreCollectionViewCell.identifier, for: indexPath) as? StoreCollectionViewCell else { return UICollectionViewCell() }
-//        cell.backgroundColor = .customBackground
+        //        cell.backgroundColor = .customBackground
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width - 40, height: self.collectionView.frame.height)
     }
 }
 
 extension StoreView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 11
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTableViewCell.identifier, for: indexPath) as? StoreTableViewCell else { return UITableViewCell() }
-//        cell.backgroundColor = .customBackground
+        //        cell.backgroundColor = .customBackground
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: StoreTableViewHeader.identifier)
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 80
     }
 }

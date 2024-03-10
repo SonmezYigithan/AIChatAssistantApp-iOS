@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SeparatorLineHomeView: UIView {
+final class SeparatorLineHomeView: UIView {
     let orLabel: UILabel = {
         let label = UILabel()
         label.text = "or"
