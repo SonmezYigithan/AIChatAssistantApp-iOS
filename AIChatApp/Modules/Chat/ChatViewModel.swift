@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ChatViewModelProtocol {
     var view: ChatViewProtocol? { get set }
@@ -16,7 +17,7 @@ protocol ChatViewModelProtocol {
 
 final class ChatViewModel {
     weak var view: ChatViewProtocol?
-    private var messages = [ChatCellPresentation]()
+    private var messages = [ChatMessage]()
     
     init(view: ChatViewProtocol) {
         self.view = view
@@ -25,30 +26,51 @@ final class ChatViewModel {
 
 extension ChatViewModel: ChatViewModelProtocol {
     func sendMessage(message: String) {
-        let userMessage = ChatCellPresentation(senderType: .user,
-                                                   senderName: "You",
-                                                   message: message,
-                                                   senderImage: nil,
-                                                   imageMessage: nil)
+        let userMessage = ChatMessage(role: "user", content: message)
         messages.append(userMessage)
-        view?.displayMessages(with: messages)
+        
+        displayMessage(message: userMessage)
+        
+        TextGenerationNetworkManager.shared.completeMessage(messages: messages) { [weak self] result in
+            switch result {
+            case .success(let chatMessage):
+                let message = ChatMessage(role: "assistant", content: chatMessage.choices[0].message.content)
+                self?.messages.append(message)
+                print("ChatGPT: \(message.content)")
+                self?.displayMessage(message: message)
+                break
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     func viewDidLoad() {
-        let greetingMessage = ChatCellPresentation(senderType: .chatGPT,
-                                                   senderName: "ChatGPT",
-                                                   message: "Hi! how can I help you?",
-                                                   senderImage: nil,
-                                                   imageMessage: nil)
-        let test = ChatCellPresentation(senderType: .user,
-                                                   senderName: "You",
-                                                   message: """
- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet dui orci. Pellentesque iaculis nibh non magna facilisis luctus. Ut elementum quis mauris ut pharetra. Sed volutpat in augue sit amet hendrerit. Etiam pellentesque justo ut sem aliquet sodales. Nunc ac volutpat leo. Quisque in tincidunt nisi. Praesent efficitur, mi at ultrices malesuada, felis arcu venenatis urna, hendrerit tincidunt nulla ipsum eu elit. Quisque est nisl, mattis feugiat risus a, placerat mollis nisi. Integer pharetra in leo id fermentum. Sed ut ipsum pulvinar, mollis neque sit amet, suscipit dolor. Proin suscipit metus vel elit eleifend, nec molestie eros dictum. Quisque imperdiet leo at ipsum mollis euismod. Pellentesque et
- """,
-                                                   senderImage: nil,
-                                                   imageMessage: nil)
+        let greetingMessage = ChatMessage(role: "assistant", content: "Hi! how can I help you?")
         messages.append(greetingMessage)
-        messages.append(test)
-        view?.displayMessages(with: messages)
+        displayMessage(message: greetingMessage)
+    }
+    
+    private func displayMessage(message: ChatMessage) {
+        let senderName: String
+        let senderType: SenderType
+        if message.role == "assistant" {
+            senderName = "chatGPT"
+            senderType = .chatGPT
+        } else if message.role == "user" {
+            senderName = "You"
+            senderType = .user
+        } else {
+            senderName = "You"
+            senderType = .user
+        }
+        
+        let presentation = ChatCellPresentation(senderType: senderType,
+                                                senderName: senderName,
+                                                message: message.content,
+                                                senderImage: nil,
+                                                imageMessage: nil)
+        
+        view?.displayMessage(message: presentation)
     }
 }

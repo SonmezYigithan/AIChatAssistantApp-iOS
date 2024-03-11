@@ -9,6 +9,7 @@ import UIKit
 
 protocol ChatViewProtocol: AnyObject {
     func displayMessages(with presentation: [ChatCellPresentation])
+    func displayMessage(message: ChatCellPresentation)
     func sendButtonClicked(message: String)
 }
 
@@ -74,6 +75,14 @@ extension ChatView: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ChatView: ChatViewProtocol {
+    func displayMessage(message: ChatCellPresentation) {
+        chatCellPresentations.append(message)
+        tableView.beginUpdates()
+        let indexPath = IndexPath(row: chatCellPresentations.count - 1, section: 0)
+        tableView.insertRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
+    }
+    
     func displayMessages(with presentations: [ChatCellPresentation]) {
         self.chatCellPresentations = presentations
         tableView.reloadData()
