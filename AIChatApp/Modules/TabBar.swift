@@ -29,6 +29,6 @@ final class TabBar: UITabBarController {
                 
         setViewControllers([vc1, vc2, vc3], animated: true)
         
-//        selectedIndex = 1
+        selectedIndex = 1
     }
 }
