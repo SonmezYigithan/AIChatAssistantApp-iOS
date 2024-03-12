@@ -14,15 +14,12 @@ final class StoreTableViewCell: UITableViewCell {
     
     private let personaImage: UIImageView = {
         let image = UIImageView()
-        image.layer.cornerRadius = 15
-        image.backgroundColor = .customBackground
-        image.clipsToBounds = true
+        image.contentMode = .scaleAspectFit
         return image
     }()
     
     private let aiNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Doctor"
         label.font = .boldSystemFont(ofSize: 17)
         return label
     }()
@@ -75,8 +72,8 @@ final class StoreTableViewCell: UITableViewCell {
     private func applyConstraints() {
         personaImage.snp.makeConstraints { make in
             make.centerY.equalTo(snp.centerY)
-            make.height.equalTo(50)
-            make.width.equalTo(50)
+            make.height.equalTo(70)
+            make.width.equalTo(70)
             make.leading.equalTo(snp.leading).offset(15)
         }
         
