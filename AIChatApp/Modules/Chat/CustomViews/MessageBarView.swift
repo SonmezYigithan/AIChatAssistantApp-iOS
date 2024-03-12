@@ -84,6 +84,7 @@ class MessageBarView: UIView {
     @objc private func sendButtonClicked() {
         guard let message = textView.text else { return }
         chatView?.sendButtonClicked(message: message)
+        textView.text = ""
     }
     
     private func applyConstraints() {
