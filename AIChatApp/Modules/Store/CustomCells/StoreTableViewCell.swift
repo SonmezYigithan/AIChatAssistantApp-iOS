@@ -66,10 +66,10 @@ final class StoreTableViewCell: UITableViewCell {
         addSubview(aiDescriptionLabel)
         addSubview(button)
         
-        applyConstraints()
+        setupConstraints()
     }
     
-    private func applyConstraints() {
+    private func setupConstraints() {
         personaImage.snp.makeConstraints { make in
             make.centerY.equalTo(snp.centerY)
             make.height.equalTo(70)

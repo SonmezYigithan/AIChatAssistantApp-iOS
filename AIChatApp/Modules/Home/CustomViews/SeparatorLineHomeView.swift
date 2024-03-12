@@ -33,7 +33,7 @@ final class SeparatorLineHomeView: UIView {
         addSubview(leftLine)
         addSubview(rightLine)
         
-        applyConstraints()
+        setupConstraints()
     }
     
     override func layoutSubviews() {
@@ -55,7 +55,7 @@ final class SeparatorLineHomeView: UIView {
         view.layer.mask = gradient
     }
     
-    private func applyConstraints() {
+    private func setupConstraints() {
         orLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }

@@ -37,14 +37,14 @@ final class StoreCelebritiesCollectionViewCell: UICollectionViewCell {
         tableView.delegate = self
         tableView.dataSource = self
         
-        applyConstraints()
+        setupConstraints()
     }
     
     func configure(with celebrityPersonas: [PersonaPresenter]) {
         celebrities = celebrityPersonas
     }
     
-    private func applyConstraints() {
+    private func setupConstraints() {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

@@ -82,7 +82,7 @@ final class StoreView: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        applyConstraints()
+        setupConstraints()
     }
     
     override func viewDidLayoutSubviews() {
@@ -93,7 +93,7 @@ final class StoreView: UIViewController {
         }
     }
     
-    private func applyConstraints() {
+    private func setupConstraints() {
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

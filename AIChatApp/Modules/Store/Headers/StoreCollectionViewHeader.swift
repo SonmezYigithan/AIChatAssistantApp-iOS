@@ -38,10 +38,10 @@ final class StoreCollectionViewHeader: UIView {
         addSubview(title)
         addSubview(descriptionLabel)
         
-        applyConstraints()
+        setupConstraints()
     }
     
-    private func applyConstraints() {
+    private func setupConstraints() {
         title.snp.makeConstraints { make in
             make.top.equalTo(snp.top).offset(15)
             make.leading.equalTo(snp.leading).offset(15)

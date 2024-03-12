@@ -127,7 +127,7 @@ final class HomeView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareView()
-        applyConstraints()
+        setupConstraints()
     }
     
     private func prepareView() {
@@ -157,7 +157,7 @@ final class HomeView: UIViewController {
     
     // MARK: - Constraints
     
-    private func applyConstraints() {
+    private func setupConstraints() {
         stackView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(80)
             make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(30)

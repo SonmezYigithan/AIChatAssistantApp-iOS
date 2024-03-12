@@ -58,7 +58,7 @@ final class ChatView: UIViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         
-        applyConstraints()
+        setupConstraints()
     }
     
     @objc private func hideKeyboard() {
@@ -70,7 +70,7 @@ final class ChatView: UIViewController {
         tableView.scrollToRow(at: lastCellIndexPath, at: .bottom, animated: true)
     }
     
-    private func applyConstraints() {
+    private func setupConstraints() {
         tableView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
             make.bottom.equalTo(messageBarView.snp.top)

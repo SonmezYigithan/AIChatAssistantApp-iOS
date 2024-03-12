@@ -78,7 +78,7 @@ class MessageBarView: UIView {
         
         sendButton.addTarget(self, action: #selector(sendButtonClicked), for: .touchUpInside)
         
-        applyConstraints()
+        setupConstraints()
     }
     
     @objc private func sendButtonClicked() {
@@ -87,7 +87,7 @@ class MessageBarView: UIView {
         textView.text = ""
     }
     
-    private func applyConstraints() {
+    private func setupConstraints() {
         stackView.snp.makeConstraints { make in
             make.top.equalTo(snp.top).offset(10)
             make.leading.trailing.bottom.equalToSuperview()
