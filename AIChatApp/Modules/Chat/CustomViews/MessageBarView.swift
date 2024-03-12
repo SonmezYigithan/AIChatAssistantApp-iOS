@@ -35,9 +35,10 @@ class MessageBarView: UIView {
         return view
     }()
     
-    private let textField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Send a message"
+    private let textView: UITextView = {
+        let textField = UITextView()
+        textField.font = .systemFont(ofSize: 17)
+//        textField.placeholder = "Send a message"
         return textField
     }()
     
@@ -72,7 +73,7 @@ class MessageBarView: UIView {
         stackView.addArrangedSubview(micButton)
         stackView.addArrangedSubview(cameraButton)
         stackView.addArrangedSubview(textFieldBackground)
-        textFieldBackground.addSubview(textField)
+        textFieldBackground.addSubview(textView)
         textFieldBackground.addSubview(sendButton)
         
         sendButton.addTarget(self, action: #selector(sendButtonClicked), for: .touchUpInside)
@@ -81,7 +82,7 @@ class MessageBarView: UIView {
     }
     
     @objc private func sendButtonClicked() {
-        guard let message = textField.text else { return }
+        guard let message = textView.text else { return }
         chatView?.sendButtonClicked(message: message)
     }
     
@@ -96,7 +97,7 @@ class MessageBarView: UIView {
             make.width.equalTo(280)
         }
         
-        textField.snp.makeConstraints { make in
+        textView.snp.makeConstraints { make in
             make.top.equalTo(textFieldBackground.snp.top).offset(10)
             make.leading.equalTo(textFieldBackground.snp.leading).offset(15)
             make.bottom.equalTo(textFieldBackground.snp.bottom).offset(-10)

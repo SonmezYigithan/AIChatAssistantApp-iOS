@@ -13,10 +13,6 @@
 		C120B6AC2B9B5C9C00422CE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C120B6AB2B9B5C9C00422CE5 /* Assets.xcassets */; };
 		C120B6AF2B9B5C9C00422CE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C120B6AD2B9B5C9C00422CE5 /* LaunchScreen.storyboard */; };
 		C120B6B92B9B5CBB00422CE5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120B6B82B9B5CBB00422CE5 /* HomeView.swift */; };
-		C120B6BC2B9B5D9B00422CE5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C120B6BB2B9B5D9B00422CE5 /* Alamofire */; };
-		C120B6BE2B9B5D9B00422CE5 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = C120B6BD2B9B5D9B00422CE5 /* AlamofireDynamic */; };
-		C120B6C12B9B5DA400422CE5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C120B6C02B9B5DA400422CE5 /* SnapKit */; };
-		C120B6C32B9B5DA400422CE5 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = C120B6C22B9B5DA400422CE5 /* SnapKit-Dynamic */; };
 		C120B6C52B9B60FB00422CE5 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120B6C42B9B60FB00422CE5 /* TabBar.swift */; };
 		C120B6C92B9B61EC00422CE5 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120B6C82B9B61EC00422CE5 /* StoreView.swift */; };
 		C120B6CB2B9B621800422CE5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120B6CA2B9B621800422CE5 /* SettingsView.swift */; };
@@ -26,13 +22,13 @@
 		C120B6D52B9D112400422CE5 /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120B6D42B9D112400422CE5 /* StoreViewModel.swift */; };
 		C120B6D82B9D1AE200422CE5 /* StoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120B6D72B9D1AE200422CE5 /* StoreTableViewCell.swift */; };
 		C120B6DA2B9D1BE100422CE5 /* StoreCelebritiesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C120B6D92B9D1BE100422CE5 /* StoreCelebritiesCollectionViewCell.swift */; };
-		C13AD1662B9F5E67009A5E01 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C13AD1652B9F5E67009A5E01 /* Alamofire */; };
-		C13AD1682B9F5E67009A5E01 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = C13AD1672B9F5E67009A5E01 /* AlamofireDynamic */; };
 		C13AD16B2B9F78BE009A5E01 /* PersonaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13AD16A2B9F78BE009A5E01 /* PersonaManager.swift */; };
 		C13AD16E2B9F8CB3009A5E01 /* Persona.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13AD16D2B9F8CB3009A5E01 /* Persona.swift */; };
 		C13AD1712BA0985E009A5E01 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13AD1702BA0985E009A5E01 /* SettingsTableViewCell.swift */; };
 		C13AD1732BA09882009A5E01 /* MoreAppsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13AD1722BA09882009A5E01 /* MoreAppsTableViewCell.swift */; };
 		C13AD1752BA0A868009A5E01 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13AD1742BA0A868009A5E01 /* SettingsViewModel.swift */; };
+		C17EA65C2BA0C9FB00ADFF91 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C17EA65B2BA0C9FB00ADFF91 /* Alamofire */; };
+		C17EA65F2BA0CA0200ADFF91 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C17EA65E2BA0CA0200ADFF91 /* SnapKit */; };
 		C1DC4BC62B9F1D8200733BF7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC4BC52B9F1D8200733BF7 /* NetworkManager.swift */; };
 		C1DC4BC82B9F1DA000733BF7 /* OpenAINetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC4BC72B9F1DA000733BF7 /* OpenAINetworkHelper.swift */; };
 		C1DC4BCA2B9F1DBC00733BF7 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC4BC92B9F1DBC00733BF7 /* APIKeys.swift */; };
@@ -46,6 +42,19 @@
 		C1E8DBDA2B9E39C600DF8855 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8DBD92B9E39C600DF8855 /* ChatMessage.swift */; };
 		C1E8DBDC2B9E3A6800DF8855 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8DBDB2B9E3A6800DF8855 /* ChatViewModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C17EA6542BA0C2D900ADFF91 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C120B69C2B9B5C9A00422CE5 /* AIChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AIChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,12 +98,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C13AD1662B9F5E67009A5E01 /* Alamofire in Frameworks */,
-				C13AD1682B9F5E67009A5E01 /* AlamofireDynamic in Frameworks */,
-				C120B6C12B9B5DA400422CE5 /* SnapKit in Frameworks */,
-				C120B6BC2B9B5D9B00422CE5 /* Alamofire in Frameworks */,
-				C120B6BE2B9B5D9B00422CE5 /* AlamofireDynamic in Frameworks */,
-				C120B6C32B9B5DA400422CE5 /* SnapKit-Dynamic in Frameworks */,
+				C17EA65C2BA0C9FB00ADFF91 /* Alamofire in Frameworks */,
+				C17EA65F2BA0CA0200ADFF91 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +308,7 @@
 				C120B6982B9B5C9A00422CE5 /* Sources */,
 				C120B6992B9B5C9A00422CE5 /* Frameworks */,
 				C120B69A2B9B5C9A00422CE5 /* Resources */,
+				C17EA6542BA0C2D900ADFF91 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -310,12 +316,8 @@
 			);
 			name = AIChatApp;
 			packageProductDependencies = (
-				C120B6BB2B9B5D9B00422CE5 /* Alamofire */,
-				C120B6BD2B9B5D9B00422CE5 /* AlamofireDynamic */,
-				C120B6C02B9B5DA400422CE5 /* SnapKit */,
-				C120B6C22B9B5DA400422CE5 /* SnapKit-Dynamic */,
-				C13AD1652B9F5E67009A5E01 /* Alamofire */,
-				C13AD1672B9F5E67009A5E01 /* AlamofireDynamic */,
+				C17EA65B2BA0C9FB00ADFF91 /* Alamofire */,
+				C17EA65E2BA0CA0200ADFF91 /* SnapKit */,
 			);
 			productName = AIChatApp;
 			productReference = C120B69C2B9B5C9A00422CE5 /* AIChatApp.app */;
@@ -346,8 +348,8 @@
 			);
 			mainGroup = C120B6932B9B5C9A00422CE5;
 			packageReferences = (
-				C120B6BA2B9B5D9B00422CE5 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				C120B6BF2B9B5DA400422CE5 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				C17EA65A2BA0C9FB00ADFF91 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				C17EA65D2BA0CA0200ADFF91 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = C120B69D2B9B5C9A00422CE5 /* Products */;
 			projectDirPath = "";
@@ -552,10 +554,11 @@
 				DEVELOPMENT_TEAM = NX5WVK23N8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AIChatApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Chat App";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -581,10 +584,11 @@
 				DEVELOPMENT_TEAM = NX5WVK23N8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AIChatApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Chat App";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -623,7 +627,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C120B6BA2B9B5D9B00422CE5 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		C17EA65A2BA0C9FB00ADFF91 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -631,7 +635,7 @@
 				minimumVersion = 5.9.0;
 			};
 		};
-		C120B6BF2B9B5DA400422CE5 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		C17EA65D2BA0CA0200ADFF91 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -642,35 +646,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C120B6BB2B9B5D9B00422CE5 /* Alamofire */ = {
+		C17EA65B2BA0C9FB00ADFF91 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C120B6BA2B9B5D9B00422CE5 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = C17EA65A2BA0C9FB00ADFF91 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		C120B6BD2B9B5D9B00422CE5 /* AlamofireDynamic */ = {
+		C17EA65E2BA0CA0200ADFF91 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C120B6BA2B9B5D9B00422CE5 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = AlamofireDynamic;
-		};
-		C120B6C02B9B5DA400422CE5 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C120B6BF2B9B5DA400422CE5 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = C17EA65D2BA0CA0200ADFF91 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		C120B6C22B9B5DA400422CE5 /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C120B6BF2B9B5DA400422CE5 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
-		};
-		C13AD1652B9F5E67009A5E01 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C120B6BA2B9B5D9B00422CE5 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		C13AD1672B9F5E67009A5E01 /* AlamofireDynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C120B6BA2B9B5D9B00422CE5 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = AlamofireDynamic;
 		};
 /* End XCSwiftPackageProductDependency section */
 

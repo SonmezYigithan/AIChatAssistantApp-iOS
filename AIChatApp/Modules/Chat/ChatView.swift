@@ -25,6 +25,8 @@ final class ChatView: UIViewController {
     private let messageBarView = MessageBarView()
     private var chatCellPresentations = [ChatCellPresentation]()
     
+    var messageViewInitialYPos: CGFloat = 0
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.identifier)
@@ -38,6 +40,10 @@ final class ChatView: UIViewController {
         viewModel?.viewDidLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        messageViewInitialYPos = messageBarView.frame.origin.y
+    }
+    
     private func prepareView() {
         view.backgroundColor = .systemBackground
         title = "Chat"
@@ -49,7 +55,19 @@ final class ChatView: UIViewController {
         tableView.dataSource = self
         messageBarView.chatView = self
         
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
         applyConstraints()
+    }
+    
+    @objc private func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
+    @objc private func keyboardWillShow() {
+        let lastCellIndexPath = IndexPath(row: chatCellPresentations.count - 1, section: 0)
+        tableView.scrollToRow(at: lastCellIndexPath, at: .bottom, animated: true)
     }
     
     private func applyConstraints() {
@@ -59,7 +77,7 @@ final class ChatView: UIViewController {
         }
         
         messageBarView.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.bottom.equalTo(view.keyboardLayoutGuide.snp.top).offset(-10)
             make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(15)
             make.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-15)
             make.height.equalTo(56)
@@ -87,6 +105,9 @@ extension ChatView: ChatViewProtocol {
         let indexPath = IndexPath(row: chatCellPresentations.count - 1, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
         tableView.endUpdates()
+
+        // Scroll to the new message
+        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
     func displayMessages(with presentations: [ChatCellPresentation]) {
