@@ -7,8 +7,12 @@
 
 import UIKit
 
-final class StoreCollectionViewCell: UICollectionViewCell {
-    static let identifier = "StoreCollectionViewCell"
+final class StoreCelebritiesCollectionViewCell: UICollectionViewCell {
+    static let identifier = "StoreCelebritiesCollectionViewCell"
+    
+    weak var viewModel: StoreViewModelProtocol?
+    private var celebrities = [PersonaPresenter]()
+    var collectionViewSectionIndex = 0
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -36,6 +40,10 @@ final class StoreCollectionViewCell: UICollectionViewCell {
         applyConstraints()
     }
     
+    func configure(with celebrityPersonas: [PersonaPresenter]) {
+        celebrities = celebrityPersonas
+    }
+    
     private func applyConstraints() {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -43,17 +51,23 @@ final class StoreCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension StoreCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
+extension StoreCelebritiesCollectionViewCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StoreTableViewCell.identifier, for: indexPath) as? StoreTableViewCell else { return UITableViewCell() }
+        cell.selectionStyle = .none
+        cell.configure(with: celebrities[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel?.selectCelebrity(at: indexPath.row, section: collectionViewSectionIndex)
     }
 }

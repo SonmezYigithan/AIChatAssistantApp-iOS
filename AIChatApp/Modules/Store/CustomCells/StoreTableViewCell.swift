@@ -12,7 +12,7 @@ final class StoreTableViewCell: UITableViewCell {
     
     static let identifier = "StoreTableViewCell"
     
-    private let image: UIImageView = {
+    private let personaImage: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 15
         image.backgroundColor = .customBackground
@@ -57,8 +57,14 @@ final class StoreTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configure(with persona: PersonaPresenter) {
+        aiNameLabel.text = persona.name
+        aiDescriptionLabel.text = persona.description
+        personaImage.image = persona.image
+    }
+    
     private func prepareView() {
-        addSubview(image)
+        addSubview(personaImage)
         addSubview(aiNameLabel)
         addSubview(aiDescriptionLabel)
         addSubview(button)
@@ -67,7 +73,7 @@ final class StoreTableViewCell: UITableViewCell {
     }
     
     private func applyConstraints() {
-        image.snp.makeConstraints { make in
+        personaImage.snp.makeConstraints { make in
             make.centerY.equalTo(snp.centerY)
             make.height.equalTo(50)
             make.width.equalTo(50)
@@ -76,13 +82,13 @@ final class StoreTableViewCell: UITableViewCell {
         
         aiNameLabel.snp.makeConstraints { make in
             make.top.equalTo(snp.top).offset(15)
-            make.leading.equalTo(image.snp.trailing).offset(15)
+            make.leading.equalTo(personaImage.snp.trailing).offset(15)
             make.trailing.equalTo(button.snp.leading).offset(-15)
         }
         
         aiDescriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(aiNameLabel.snp.bottom).offset(3)
-            make.leading.equalTo(image.snp.trailing).offset(15)
+            make.leading.equalTo(personaImage.snp.trailing).offset(15)
             make.trailing.equalTo(button.snp.leading).offset(-15)
         }
         

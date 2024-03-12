@@ -8,8 +8,10 @@
 import Foundation
 
 final class ChatViewBuilder {
-    static func make() -> ChatView {
+    static func make(chatParameters: ChatParameters) -> ChatView {
         let view = ChatView()
+        let viewModel = ChatViewModel(view: view, chatParameters: chatParameters)
+        view.viewModel = viewModel
         view.hidesBottomBarWhenPushed = true
         return view
     }

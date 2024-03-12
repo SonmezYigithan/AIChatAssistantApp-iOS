@@ -18,7 +18,6 @@ struct ChatCellPresentation {
     let senderType: SenderType
     let senderName: String
     let message: String
-    let senderImage: UIImage?
     let imageMessage: [UIImage]?
 }
 
@@ -72,19 +71,20 @@ class ChatTableViewCell: UITableViewCell {
         messageLabel.text = presentation.message
         self.senderType = presentation.senderType
         
-        configureStyle(senderType: presentation.senderType)
+        configureStyle(senderType: presentation.senderType, personaName: presentation.senderName)
     }
     
-    private func configureStyle(senderType: SenderType) {
+    private func configureStyle(senderType: SenderType, personaName: String) {
         if senderType == .chatGPT {
             backgroundColor = .customBackground
             chatImageView.image = UIImage(systemName: "circle.fill")
-            chatImageView.tintColor = .green
+            chatImageView.tintColor = .customChatGPTGreen
         }else if senderType == .user {
-            // show user image
             chatImageView.image = UIImage(systemName: "person.crop.circle.fill")
         }else if senderType == .persona {
             // show persona image
+            chatImageView.image = PersonaManager.shared.getPersonaImage(of: personaName)
+            backgroundColor = .customBackground
         }
     }
     

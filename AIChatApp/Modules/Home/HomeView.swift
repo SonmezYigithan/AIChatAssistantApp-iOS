@@ -196,7 +196,10 @@ extension HomeView: HomeViewProtocol {
     func navigateTo(route: HomeViewRoutes) {
         switch route {
         case .chat:
-            let vc = ChatViewBuilder.make()
+            let vc = ChatViewBuilder.make(chatParameters: .init(chatType: .textGeneration,
+                                                                aiName: "ChatGPT",
+                                                                aiImage: nil, 
+                                                                startPrompt: nil))
             show(vc, sender: self)
         case .cameraInput:
             print("navigate to Camera Input") // TODO:

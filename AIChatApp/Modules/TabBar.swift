@@ -21,7 +21,7 @@ final class TabBar: UITabBarController {
         vc2.tabBarItem.image = UIImage(systemName: "text.bubble.fill")
         vc3.tabBarItem.image = UIImage(systemName: "line.3.horizontal")
         
-        vc1.title = "Store"
+        vc1.title = "Personas"
         vc2.title = "Chat"
         vc3.title = "More"
         

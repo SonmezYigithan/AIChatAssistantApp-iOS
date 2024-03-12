@@ -23,12 +23,10 @@ final class TextGenerationNetworkManager {
             ]
         }
 
-        // Create Parameters object
         var parameters: Parameters = [
             "model": "gpt-3.5-turbo"
         ]
 
-        // Add messages to parameters if not empty
         if !jsonMessages.isEmpty {
             parameters["messages"] = jsonMessages
         }

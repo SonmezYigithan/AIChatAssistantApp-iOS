@@ -7,6 +7,12 @@
 
 import UIKit
 
+enum ChatType {
+    case textGeneration
+    case imageGeneration
+    case persona
+}
+
 protocol ChatViewProtocol: AnyObject {
     func displayMessages(with presentation: [ChatCellPresentation])
     func displayMessage(message: ChatCellPresentation)
@@ -15,8 +21,8 @@ protocol ChatViewProtocol: AnyObject {
 
 final class ChatView: UIViewController {
     //MARK: - Properties
+    var viewModel: ChatViewModelProtocol?
     private let messageBarView = MessageBarView()
-    private lazy var viewModel: ChatViewModelProtocol = ChatViewModel(view: self)
     private var chatCellPresentations = [ChatCellPresentation]()
     
     private let tableView: UITableView = {
@@ -29,7 +35,7 @@ final class ChatView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareView()
-        viewModel.viewDidLoad()
+        viewModel?.viewDidLoad()
     }
     
     private func prepareView() {
@@ -89,6 +95,6 @@ extension ChatView: ChatViewProtocol {
     }
     
     func sendButtonClicked(message: String) {
-        viewModel.sendMessage(message: message)
+        viewModel?.sendMessage(message: message)
     }
 }

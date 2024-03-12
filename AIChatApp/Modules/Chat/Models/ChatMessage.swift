@@ -7,15 +7,6 @@
 
 import UIKit
 
-//struct ChatMessage {
-//    let senderType: SenderType
-//    let senderName: String
-//    let message: String
-//    let senderImage: UIImage?
-//    let imageMessage: [UIImage]?
-//}
-
-
 struct ChatMessage {
     let role: String
     let content: String
