@@ -133,6 +133,7 @@ extension StoreView: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoreCelebritiesCollectionViewCell.identifier, for: indexPath) as? StoreCelebritiesCollectionViewCell else { return UICollectionViewCell() }
         cell.configure(with: celebrities[indexPath.row])
         cell.viewModel = viewModel
+        cell.collectionViewSectionIndex = indexPath.row
         return cell
     }
     
