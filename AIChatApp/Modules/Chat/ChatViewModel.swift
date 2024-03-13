@@ -82,19 +82,34 @@ extension ChatViewModel: ChatViewModelProtocol {
             ChatMessage(role: $0.isSenderUser ? "user" : "assistant", content: $0.textMessage ?? "")
         }
         
-        displayAllMessages(messages: messages)
+        displayAllLoadedMessages(messages: messages)
     }
     
     private func generateText() {
-        TextGenerationNetworkManager.shared.completeMessage(messages: messages) { [weak self] result in
-            switch result {
-            case .success(let chatMessage):
-                let message = ChatMessage(role: "assistant", content: chatMessage.choices[0].message.content)
-                self?.messages.append(message)
-                print("ChatGPT: \(message.content)")
-                self?.displayMessage(message: message, imageMessage: nil)
-            case .failure(let error):
-                print(error)
+        if chatParameters.chatType == .persona {
+            let startPrompt = ChatMessage(role: "assistant", content: chatParameters.startPrompt ?? "")
+            TextGenerationNetworkManager.shared.completeMessageAsPersona(messages: messages, personaPrompt: startPrompt){ [weak self] result in
+                switch result {
+                case .success(let chatMessage):
+                    let message = ChatMessage(role: "assistant", content: chatMessage.choices[0].message.content)
+                    self?.messages.append(message)
+                    print("ChatGPT: \(message.content)")
+                    self?.displayMessage(message: message, imageMessage: nil)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        } else {
+            TextGenerationNetworkManager.shared.completeMessage(messages: messages) { [weak self] result in
+                switch result {
+                case .success(let chatMessage):
+                    let message = ChatMessage(role: "assistant", content: chatMessage.choices[0].message.content)
+                    self?.messages.append(message)
+                    print("ChatGPT: \(message.content)")
+                    self?.displayMessage(message: message, imageMessage: nil)
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
     }
@@ -121,7 +136,7 @@ extension ChatViewModel: ChatViewModelProtocol {
         view?.displayMessage(message: presentation)
     }
     
-    private func displayAllMessages(messages: [ChatMessage]) {
+    private func displayAllLoadedMessages(messages: [ChatMessage]) {
         var presentations = [ChatCellPresentation]()
         for message in messages {
             presentations.append(createChatCellPresentation(message: message, imageMessage: nil))

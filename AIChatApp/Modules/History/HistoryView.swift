@@ -36,6 +36,9 @@ final class HistoryView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         viewModel.fetchAllChatHistory()
     }
     

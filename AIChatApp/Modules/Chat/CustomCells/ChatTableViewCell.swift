@@ -109,7 +109,7 @@ class ChatTableViewCell: UITableViewCell {
         }
         
         messageLabel.snp.makeConstraints { make in
-            make.top.equalTo(senderNameLabel.snp.bottom).offset(15)
+            make.top.equalTo(senderNameLabel.snp.bottom).offset(5)
             make.bottom.equalToSuperview().offset(-15)
             make.leading.equalTo(chatImageView.snp.trailing).offset(15)
             make.trailing.equalToSuperview().offset(-15)
