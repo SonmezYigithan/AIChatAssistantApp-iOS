@@ -21,6 +21,7 @@ final class ChatSaveManager {
         chatEntity.createdAt = chatParameters.createdAt
         chatEntity.aiImage = chatParameters.aiImage
         chatEntity.greeting = chatParameters.greetingMessage
+        chatEntity.chatTitle = chatParameters.chatTitle
         
         do {
             try context.save()
@@ -104,6 +105,25 @@ final class ChatSaveManager {
                 return
             }
             print("CoreData: Chat couldn't found \(chatId)")
+        }
+        catch let error as NSError{
+            print(error)
+        }
+    }
+    
+    func saveChatTitle(chatId: String, chatTitle: String) {
+        let predicate = NSPredicate(format: "chatId == %@", chatId)
+        let fetchRequest = ChatEntity.fetchRequest()
+        fetchRequest.predicate = predicate
+        
+        do {
+            let chat = try context.fetch(fetchRequest)
+            if let firstChat = chat.first, chat.count > 0 {
+                firstChat.chatTitle = chatTitle
+                try context.save()
+                print("CoreData: Saved chat title to \(firstChat.chatId)")
+                return
+            }
         }
         catch let error as NSError{
             print(error)

@@ -9,7 +9,7 @@ import UIKit
 
 struct ChatHistoryCellPresentation {
     let aiName: String
-    let chatSummary: String?
+    let chatTitle: String?
     let chatMessage: String?
     let createdAt: String
     let isStarred: Bool

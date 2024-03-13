@@ -47,7 +47,7 @@ extension StoreViewModel: StoreViewModelProtocol {
     }
     
     private func navigateToPersonaChat(persona: Persona) {
-        let chatParameters = ChatParameters(chatType: .persona, aiName: persona.name, aiImage: persona.image, startPrompt: persona.prompt, isStarred: false, createdAt: Date.now, chatId: UUID().uuidString, greetingMessage: persona.greetingMessage)
+        let chatParameters = ChatParameters(chatType: .persona, aiName: persona.name, aiImage: persona.image, startPrompt: persona.prompt, isStarred: false, createdAt: Date.now, chatId: UUID().uuidString, greetingMessage: persona.greetingMessage, chatTitle: nil)
         ChatSaveManager.shared.createChat(chatParameters: chatParameters)
         let vc = ChatViewBuilder.make(chatParameters: chatParameters)
         view?.navigateToChatView(vc: vc)

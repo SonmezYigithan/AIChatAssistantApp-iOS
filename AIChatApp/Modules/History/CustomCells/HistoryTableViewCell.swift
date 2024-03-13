@@ -23,7 +23,7 @@ class HistoryTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let chatSummary: UILabel = {
+    private let chatTitle: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.numberOfLines = 2
@@ -71,7 +71,7 @@ class HistoryTableViewCell: UITableViewCell {
         }
         
         aiName.text = presentation.aiName
-        chatSummary.text =  presentation.chatSummary
+        chatTitle.text =  presentation.chatTitle ?? "New Chat"
         chatMessage.text = presentation.chatMessage
         createdAt.text =  presentation.createdAt
         starImageView.image = presentation.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
@@ -80,7 +80,7 @@ class HistoryTableViewCell: UITableViewCell {
     private func prepareView() {
         addSubview(aiImage)
         addSubview(aiName)
-        addSubview(chatSummary)
+        addSubview(chatTitle)
         addSubview(chatMessage)
         addSubview(createdAt)
         addSubview(starImageView)
@@ -100,7 +100,7 @@ class HistoryTableViewCell: UITableViewCell {
             make.top.equalToSuperview().offset(10)
         }
         
-        chatSummary.snp.makeConstraints { make in
+        chatTitle.snp.makeConstraints { make in
             make.leading.equalTo(aiImage.snp.trailing).offset(15)
             make.trailing.equalTo(starImageView.snp.leading).offset(-10)
             make.top.equalTo(aiName.snp.bottom).offset(5)
@@ -109,7 +109,7 @@ class HistoryTableViewCell: UITableViewCell {
         chatMessage.snp.makeConstraints { make in
             make.leading.equalTo(aiImage.snp.trailing).offset(15)
             make.trailing.equalTo(starImageView.snp.leading).offset(-10)
-            make.top.equalTo(chatSummary.snp.bottom).offset(5)
+            make.top.equalTo(chatTitle.snp.bottom).offset(5)
         }
         
         createdAt.snp.makeConstraints { make in

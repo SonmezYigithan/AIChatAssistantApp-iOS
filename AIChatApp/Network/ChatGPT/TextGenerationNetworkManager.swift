@@ -64,4 +64,22 @@ final class TextGenerationNetworkManager {
             }
         }
     }
+    
+    func generateChatTitle(chatId: String, messages: [ChatMessage], completion: @escaping (Result<ChatGPTResponse, Error>) -> ()) {
+        let urlEndpoint = OpenAINetworkHelper.shared.baseURL + "chat/completions"
+        
+        let prompt = ChatMessage(role: "user", content: "generate a chat title for this conversation")
+        var chatMessages = messages
+        chatMessages.append(prompt)
+        let parameters = convertChatMessagesToParameters(messages: chatMessages)
+        
+        NetworkManager.shared.request(ChatGPTResponse.self, url: urlEndpoint, method: .post, parameters: parameters, headers: OpenAINetworkHelper.shared.headers()) { result in
+            switch result {
+            case .success(let responseMessage):
+                completion(.success(responseMessage))
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

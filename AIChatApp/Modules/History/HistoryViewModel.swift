@@ -51,7 +51,7 @@ extension HistoryViewModel: HistoryViewModelProtocol {
             date = dateFormatter.string(from: $0.createdAt)
             
             return ChatHistoryCellPresentation(aiName: $0.aiName ?? "",
-                                               chatSummary: "No Summary Yet",
+                                               chatTitle: $0.chatTitle,
                                                chatMessage: chatMessage,
                                                createdAt: date,
                                                isStarred: $0.isStarred,
@@ -76,7 +76,8 @@ extension HistoryViewModel: HistoryViewModelProtocol {
                                             isStarred: chat.isStarred,
                                             createdAt: chat.createdAt,
                                             chatId: chat.chatId,
-                                            greetingMessage: nil)
+                                            greetingMessage: nil,
+                                            chatTitle: chat.chatTitle)
         
         guard let chatMessages = chatMessages else { return }
         let vc = ChatViewBuilder.make(chatParameters: chatParameters, chatMessages: chatMessages)

@@ -4,6 +4,7 @@
         <attribute name="aiImage" optional="YES" attributeType="String"/>
         <attribute name="aiName" attributeType="String"/>
         <attribute name="chatId" attributeType="String"/>
+        <attribute name="chatTitle" optional="YES" attributeType="String"/>
         <attribute name="chatType" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="greeting" optional="YES" attributeType="String"/>

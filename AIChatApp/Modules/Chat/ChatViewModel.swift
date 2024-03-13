@@ -23,6 +23,7 @@ struct ChatParameters {
     let createdAt: Date
     let chatId: String
     let greetingMessage: String?
+    var chatTitle: String?
 }
 
 protocol ChatViewModelProtocol {
@@ -36,10 +37,11 @@ protocol ChatViewModelProtocol {
 final class ChatViewModel {
     weak var view: ChatViewProtocol?
     private var messages = [ChatMessage]()
-    private let chatParameters: ChatParameters
+    private var chatParameters: ChatParameters
     
     /// represents if a new chat view created or a previous one loaded
     var isViewLoaded = false
+    var canGenerateChatTitle = true
     
     init(view: ChatViewProtocol, chatParameters: ChatParameters) {
         self.view = view
@@ -51,6 +53,10 @@ extension ChatViewModel: ChatViewModelProtocol {
     func sendMessage(message: String) {
         let userMessage = ChatMessage(role: "user", content: message)
         messages.append(userMessage)
+        
+        if canGenerateChatTitle {
+            generateChatTitle()
+        }
         
         displayMessage(message: userMessage, imageMessage: nil)
         
@@ -174,5 +180,23 @@ extension ChatViewModel: ChatViewModelProtocol {
         let greetingMessage = ChatMessage(role: "assistant", content: greeting)
         messages.append(greetingMessage)
         displayMessage(message: greetingMessage, imageMessage: nil)
+    }
+    
+    private func generateChatTitle() {
+        TextGenerationNetworkManager.shared.generateChatTitle(chatId: chatParameters.chatId, messages: messages) { [weak self] result in
+            switch result {
+            case .success(let response):
+                var chatTitle = response.choices[0].message.content
+                chatTitle = String(chatTitle.dropFirst().dropLast())
+                if var chatParameters = self?.chatParameters {
+                    chatParameters.chatTitle = chatTitle
+                    ChatSaveManager.shared.saveChatTitle(chatId: chatParameters.chatId, chatTitle: chatTitle)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+        canGenerateChatTitle = false
     }
 }
