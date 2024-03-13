@@ -76,6 +76,9 @@ class MessageBarView: UIView {
         textFieldBackground.addSubview(textView)
         textFieldBackground.addSubview(sendButton)
         
+        sendButton.isEnabled = false
+        textView.delegate = self
+        
         sendButton.addTarget(self, action: #selector(sendButtonClicked), for: .touchUpInside)
         
         setupConstraints()
@@ -109,6 +112,16 @@ class MessageBarView: UIView {
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().offset(-5)
             make.width.height.equalTo(28)
+        }
+    }
+}
+
+extension MessageBarView: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            sendButton.isEnabled = false
+        }else {
+            sendButton.isEnabled = true
         }
     }
 }
