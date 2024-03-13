@@ -16,6 +16,15 @@ final class HomeView: UIViewController {
     // MARK: - Properties
     private lazy var viewModel: HomeViewModelProtocol = HomeViewModel(view: self)
     
+    private let historyButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("History", for: .normal)
+        button.backgroundColor = .customBackground
+        button.layer.cornerRadius = 15
+        button.layer.masksToBounds = true
+        return button
+    }()
+    
     private let chatButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .customBackground
@@ -133,6 +142,7 @@ final class HomeView: UIViewController {
     private func prepareView() {
         view.backgroundColor = .systemBackground
         
+        view.addSubview(historyButton)
         view.addSubview(stackView)
         stackView.addArrangedSubview(imageView)
         stackView.addArrangedSubview(chatButton)
@@ -145,6 +155,7 @@ final class HomeView: UIViewController {
         
         chatButton.addTarget(self, action: #selector(chatButtonClicked), for: .touchUpInside)
         cameraButton.addTarget(self, action: #selector(cameraButtonClicked), for: .touchUpInside)
+        historyButton.addTarget(self, action: #selector(historyButtonClicked), for: .touchUpInside)
     }
     
     @objc private func chatButtonClicked() {
@@ -155,9 +166,20 @@ final class HomeView: UIViewController {
         viewModel.cameraButtonClicked()
     }
     
+    @objc private func historyButtonClicked() {
+        viewModel.historyButtonClicked()
+    }
+    
     // MARK: - Constraints
     
     private func setupConstraints() {
+        historyButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(15)
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.width.equalTo(50)
+            make.height.equalTo(25)
+        }
+        
         stackView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(80)
             make.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(30)
@@ -195,14 +217,12 @@ final class HomeView: UIViewController {
 extension HomeView: HomeViewProtocol {
     func navigateTo(route: HomeViewRoutes) {
         switch route {
-        case .chat:
-            let vc = ChatViewBuilder.make(chatParameters: .init(chatType: .textGeneration,
-                                                                aiName: "ChatGPT",
-                                                                aiImage: nil, 
-                                                                startPrompt: nil))
+        case .chat(let vc):
             show(vc, sender: self)
         case .cameraInput:
-            print("navigate to Camera Input") // TODO:
+            print("navigate to Camera Input") // TODO: Camera Input
+        case .history(let vc):
+            show(vc, sender: self)
         }
     }
 }

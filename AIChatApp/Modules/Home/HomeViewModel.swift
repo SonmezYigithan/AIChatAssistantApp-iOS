@@ -8,13 +8,15 @@
 import Foundation
 
 enum HomeViewRoutes {
-    case chat
+    case chat(ChatView)
     case cameraInput
+    case history(HistoryView)
 }
 
 protocol HomeViewModelProtocol {
     func chatButtonClicked()
     func cameraButtonClicked()
+    func historyButtonClicked()
 }
 
 final class HomeViewModel {
@@ -26,8 +28,21 @@ final class HomeViewModel {
 }
 
 extension HomeViewModel: HomeViewModelProtocol {
+    func historyButtonClicked() {
+        let vc = HistoryView()
+        view?.navigateTo(route: .history(vc))
+    }
+    
     func chatButtonClicked() {
-        view?.navigateTo(route: .chat)
+        let chatParameters = ChatParameters(chatType: .textGeneration,
+                                            aiName: "ChatGPT",
+                                            aiImage: nil,
+                                            startPrompt: nil,
+                                            isStarred: false,
+                                            createdAt: Date.now)
+        let vc = ChatViewBuilder.make(chatParameters: chatParameters)
+        ChatSaveManager.shared.createChat(chatParameters: chatParameters)
+        view?.navigateTo(route: .chat(vc))
     }
     
     func cameraButtonClicked() {

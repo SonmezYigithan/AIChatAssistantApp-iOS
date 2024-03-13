@@ -7,12 +7,6 @@
 
 import UIKit
 
-enum ChatType {
-    case textGeneration
-    case imageGeneration
-    case persona
-}
-
 protocol ChatViewProtocol: AnyObject {
     func displayMessages(with presentation: [ChatCellPresentation])
     func displayMessage(message: ChatCellPresentation)
@@ -33,6 +27,8 @@ final class ChatView: UIViewController {
         tableView.separatorStyle = .none
         return tableView
     }()
+    
+    // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +66,8 @@ final class ChatView: UIViewController {
         tableView.scrollToRow(at: lastCellIndexPath, at: .bottom, animated: true)
     }
     
+    // MARK: - Constraints
+    
     private func setupConstraints() {
         tableView.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
@@ -85,6 +83,8 @@ final class ChatView: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
+
 extension ChatView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chatCellPresentations.count
@@ -97,6 +97,8 @@ extension ChatView: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: - ChatViewProtocol
 
 extension ChatView: ChatViewProtocol {
     func displayMessage(message: ChatCellPresentation) {

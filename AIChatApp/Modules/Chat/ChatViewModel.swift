@@ -8,11 +8,19 @@
 import Foundation
 import UIKit
 
+enum ChatType: Int {
+    case textGeneration = 1
+    case imageGeneration = 2
+    case persona = 3
+}
+
 struct ChatParameters {
     let chatType: ChatType
     let aiName: String
     let aiImage: UIImage?
     let startPrompt: String?
+    let isStarred: Bool
+    let createdAt: Date
 }
 
 protocol ChatViewModelProtocol {
@@ -53,13 +61,9 @@ extension ChatViewModel: ChatViewModelProtocol {
             let personaPrompt = ChatMessage(role: "assistant", content: startPrompt)
             messages.append(personaPrompt)
         }else if chatParameters.chatType == .imageGeneration {
-            let greetingMessage = ChatMessage(role: "assistant", content: "What would you like me to draw")
-            messages.append(greetingMessage)
-            displayMessage(message: greetingMessage, senderImage: nil, imageMessage: nil)
+            displayGreetingMessage(message: "What would you like me to draw")
         }else {
-            let greetingMessage = ChatMessage(role: "assistant", content: "Hi! how can I help you?")
-            messages.append(greetingMessage)
-            displayMessage(message: greetingMessage, senderImage: nil, imageMessage: nil)
+            displayGreetingMessage(message: "Hi! how can I help you?")
         }
     }
     
@@ -97,7 +101,7 @@ extension ChatViewModel: ChatViewModelProtocol {
             senderName = "You"
             senderType = .user
         } else {
-            // Unhandled: system
+            // Unhandled: system (I don't use it but it may return from OpenAI API)
             senderName = "System"
             senderType = .chatGPT
         }
@@ -109,4 +113,11 @@ extension ChatViewModel: ChatViewModelProtocol {
         
         view?.displayMessage(message: presentation)
     }
+    
+    private func displayGreetingMessage(message: String) {
+        let greetingMessage = ChatMessage(role: "assistant", content: message)
+        messages.append(greetingMessage)
+        displayMessage(message: greetingMessage, senderImage: nil, imageMessage: nil)
+    }
+
 }

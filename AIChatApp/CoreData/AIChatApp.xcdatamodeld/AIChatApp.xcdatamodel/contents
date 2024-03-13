@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23C71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ChatEntity" representedClassName=".ChatEntity" syncable="YES">
+        <attribute name="aiImage" optional="YES" attributeType="String"/>
+        <attribute name="aiName" attributeType="String"/>
+        <attribute name="chatId" optional="YES" attributeType="String"/>
+        <attribute name="chatType" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isStarred" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="startPrompt" optional="YES" attributeType="String"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ChatMessageEntity" inverseName="chat" inverseEntity="ChatMessageEntity"/>
+    </entity>
+    <entity name="ChatMessageEntity" representedClassName=".ChatMessageEntity" syncable="YES">
+        <attribute name="imageMessage" optional="YES" attributeType="String"/>
+        <attribute name="isSenderUser" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="textMessage" attributeType="String"/>
+        <relationship name="chat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ChatEntity" inverseName="messages" inverseEntity="ChatEntity"/>
+    </entity>
+</model>
