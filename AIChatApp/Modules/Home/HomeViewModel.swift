@@ -36,7 +36,7 @@ extension HomeViewModel: HomeViewModelProtocol {
     func chatButtonClicked() {
         let chatParameters = ChatParameters(chatType: .textGeneration,
                                             aiName: "ChatGPT",
-                                            aiImage: nil,
+                                            aiImage: "chatgptlogo",
                                             startPrompt: nil,
                                             isStarred: false,
                                             createdAt: Date.now,

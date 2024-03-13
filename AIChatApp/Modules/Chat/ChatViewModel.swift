@@ -132,6 +132,7 @@ extension ChatViewModel: ChatViewModelProtocol {
     private func createChatCellPresentation(message: ChatMessage, imageMessage: UIImage?) -> ChatCellPresentation {
         let senderName: String
         let senderType: SenderType
+        let senderImage: String
         
         if message.role == "assistant" {
             if chatParameters.chatType == .persona {
@@ -141,17 +142,21 @@ extension ChatViewModel: ChatViewModelProtocol {
                 senderName = "chatGPT"
                 senderType = .chatGPT
             }
+            senderImage = chatParameters.aiImage ?? ""
         } else if message.role == "user" {
             senderName = "You"
             senderType = .user
+            senderImage = "person.crop.circle.fill"
         } else {
             // Unhandled: system (I don't use it but it may return from OpenAI API)
             senderName = "System"
             senderType = .chatGPT
+            senderImage = chatParameters.aiImage ?? ""
         }
         
         return ChatCellPresentation(senderType: senderType,
                                                 senderName: senderName,
+                                                senderImage: senderImage,
                                                 message: message.content,
                                                 imageMessage: nil)
     }

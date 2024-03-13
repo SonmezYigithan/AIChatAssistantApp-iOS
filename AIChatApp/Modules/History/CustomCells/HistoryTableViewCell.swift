@@ -62,14 +62,12 @@ class HistoryTableViewCell: UITableViewCell {
     }
     
     func configure(with presentation: ChatHistoryCellPresentation) {
-        if presentation.chatType == .textGeneration {
-            self.aiImage.image = UIImage(systemName: "circle.fill")
-        }else if presentation.chatType == .persona {
+        if presentation.chatType == .imageGeneration {
+            // TODO: Image Generation Logo
+        }else {
             if let image = presentation.image {
                 self.aiImage.image = UIImage(named: image)
             }
-        }else {
-            // image generation
         }
         
         aiName.text = presentation.aiName
@@ -94,7 +92,7 @@ class HistoryTableViewCell: UITableViewCell {
         aiImage.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(15)
             make.centerY.equalToSuperview()
-            make.width.height.equalTo(35)
+            make.width.height.equalTo(40)
         }
         
         aiName.snp.makeConstraints { make in

@@ -19,7 +19,7 @@ final class ChatSaveManager {
         chatEntity.startPrompt = chatParameters.startPrompt
         chatEntity.isStarred = chatParameters.isStarred
         chatEntity.createdAt = chatParameters.createdAt
-        //        chatEntity.aiImage = chatParameters.aiImage // TODO: Instead of Using UIImage() use String to store AI Images
+        chatEntity.aiImage = chatParameters.aiImage
         
         do {
             try context.save()

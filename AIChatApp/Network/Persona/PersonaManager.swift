@@ -5,6 +5,20 @@
 //  Created by Yiğithan Sönmez on 11.03.2024.
 //
 
+enum PersonaImage {
+    case taylorSwift
+    case walterWhite
+    
+    var personaImageString: String {
+        switch self {
+        case .taylorSwift:
+            return "taylorswift"
+        case .walterWhite:
+            return "walterwhite"
+        }
+    }
+}
+
 import UIKit
 
 class PersonaManager {

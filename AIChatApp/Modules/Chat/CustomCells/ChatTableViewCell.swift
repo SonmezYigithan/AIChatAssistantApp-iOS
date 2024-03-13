@@ -17,6 +17,7 @@ enum SenderType {
 struct ChatCellPresentation {
     let senderType: SenderType
     let senderName: String
+    let senderImage: String?
     let message: String
     let imageMessage: [UIImage]?
 }
@@ -71,19 +72,19 @@ class ChatTableViewCell: UITableViewCell {
         messageLabel.text = presentation.message
         self.senderType = presentation.senderType
         
-        configureStyle(senderType: presentation.senderType, personaName: presentation.senderName)
+        configureStyle(presentation: presentation)
     }
     
-    private func configureStyle(senderType: SenderType, personaName: String) {
+    private func configureStyle(presentation: ChatCellPresentation) {
         if senderType == .chatGPT {
             backgroundColor = .customBackground
-            chatImageView.image = UIImage(systemName: "circle.fill")
+            chatImageView.image = UIImage(named: "chatgptlogo")
             chatImageView.tintColor = .customChatGPTGreen
         }else if senderType == .user {
-            chatImageView.image = UIImage(systemName: "person.crop.circle.fill")
+            chatImageView.image = UIImage(systemName: presentation.senderImage ?? "")
         }else if senderType == .persona {
-            // show persona image
-            chatImageView.image = PersonaManager.shared.getPersonaImage(of: personaName)
+            chatImageView.image = UIImage(named: presentation.senderImage ?? "")
+//            chatImageView.image = PersonaManager.shared.getPersonaImage(of: presentation.senderName)
             backgroundColor = .customBackground
         }
     }
