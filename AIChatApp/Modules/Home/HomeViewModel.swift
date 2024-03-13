@@ -39,7 +39,8 @@ extension HomeViewModel: HomeViewModelProtocol {
                                             aiImage: nil,
                                             startPrompt: nil,
                                             isStarred: false,
-                                            createdAt: Date.now)
+                                            createdAt: Date.now,
+                                            chatId: UUID().uuidString)
         let vc = ChatViewBuilder.make(chatParameters: chatParameters)
         ChatSaveManager.shared.createChat(chatParameters: chatParameters)
         view?.navigateTo(route: .chat(vc))

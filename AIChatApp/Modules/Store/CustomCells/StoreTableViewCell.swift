@@ -57,7 +57,9 @@ final class StoreTableViewCell: UITableViewCell {
     func configure(with persona: PersonaPresenter) {
         aiNameLabel.text = persona.name
         aiDescriptionLabel.text = persona.description
-        personaImage.image = persona.image
+        
+        guard let image = persona.image else { return }
+        personaImage.image = UIImage(named: image)
     }
     
     private func prepareView() {

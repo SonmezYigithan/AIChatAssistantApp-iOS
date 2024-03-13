@@ -11,11 +11,11 @@ struct Persona {
     let name: String
     let description: String
     let prompt: String
-    let image: UIImage?
+    let image: String?
 }
 
 struct PersonaPresenter {
     let name: String
     let description: String
-    let image: UIImage?
+    let image: String?
 }

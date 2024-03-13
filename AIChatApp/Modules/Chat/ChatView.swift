@@ -62,8 +62,10 @@ final class ChatView: UIViewController {
     }
     
     @objc private func keyboardWillShow() {
-        let lastCellIndexPath = IndexPath(row: chatCellPresentations.count - 1, section: 0)
-        tableView.scrollToRow(at: lastCellIndexPath, at: .bottom, animated: true)
+        if chatCellPresentations.count > 0 {
+            let lastCellIndexPath = IndexPath(row: chatCellPresentations.count - 1, section: 0)
+            tableView.scrollToRow(at: lastCellIndexPath, at: .bottom, animated: true)
+        }
     }
     
     // MARK: - Constraints
@@ -109,7 +111,9 @@ extension ChatView: ChatViewProtocol {
         tableView.endUpdates()
 
         // Scroll to the new message
-        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        if chatCellPresentations.count > 0 {
+            tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
     }
     
     func displayMessages(with presentations: [ChatCellPresentation]) {

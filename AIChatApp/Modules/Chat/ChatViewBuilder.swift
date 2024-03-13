@@ -15,4 +15,13 @@ final class ChatViewBuilder {
         view.hidesBottomBarWhenPushed = true
         return view
     }
+    
+    static func make(chatParameters: ChatParameters, chatMessages: [ChatMessageEntity]) -> ChatView {
+        let view = ChatView()
+        let viewModel = ChatViewModel(view: view, chatParameters: chatParameters)
+        view.viewModel = viewModel
+        viewModel.loadChatMessages(chatMessages: chatMessages)
+        view.hidesBottomBarWhenPushed = true
+        return view
+    }
 }

@@ -19,6 +19,7 @@ struct ChatHistoryCellPresentation {
 
 protocol HistoryViewProtocol: AnyObject {
     func showChatHistory(with presentation: [ChatHistoryCellPresentation])
+    func showChatView(vc: ChatView)
 }
 
 final class HistoryView: UIViewController {
@@ -70,11 +71,30 @@ extension HistoryView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.loadChatMessages(at: indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, success) in
+            self?.viewModel.deleteChat(at: indexPath.row)
+            self?.chatHistoryCellPresentation.remove(at: indexPath.row)
+            self?.chatHistoryTableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [delete])
+        return swipeActions
+    }
 }
 
 extension HistoryView: HistoryViewProtocol {
     func showChatHistory(with presentation: [ChatHistoryCellPresentation]) {
         chatHistoryCellPresentation = presentation
         chatHistoryTableView.reloadData()
+    }
+    
+    func showChatView(vc: ChatView) {
+        show(vc, sender: self)
     }
 }

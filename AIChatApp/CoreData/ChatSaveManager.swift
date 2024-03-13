@@ -14,30 +14,37 @@ final class ChatSaveManager {
     func createChat(chatParameters: ChatParameters) {
         let chatEntity = ChatEntity(context: context)
         chatEntity.aiName = chatParameters.aiName
-        chatEntity.chatId = UUID().uuidString
+        chatEntity.chatId = chatParameters.chatId
         chatEntity.chatType = Int64(chatParameters.chatType.rawValue)
         chatEntity.startPrompt = chatParameters.startPrompt
         chatEntity.isStarred = chatParameters.isStarred
         chatEntity.createdAt = chatParameters.createdAt
-//        chatEntity.aiImage = chatParameters.aiImage // TODO: Instead of Using UIImage() use String to store AI Images
+        //        chatEntity.aiImage = chatParameters.aiImage // TODO: Instead of Using UIImage() use String to store AI Images
         
         do {
             try context.save()
-            print("CoreData: Created new chat")
+            print("CoreData: Created new chat \(chatParameters.chatId)")
         }
         catch let error as NSError{
             print(error)
         }
     }
     
-    func deleteChat(with chatId: String) {
+    func deleteChat(chatId: String) {
         let predicate = NSPredicate(format: "chatId == %@", chatId)
-        let fetchRequest = ChatMessageEntity.fetchRequest()
+        let fetchRequest = ChatEntity.fetchRequest()
         fetchRequest.predicate = predicate
         
         do {
             let list = try context.fetch(fetchRequest)
             if let firstEntity = list.first, list.count > 0 {
+                if let messages = firstEntity.messages {
+                    for message in messages {
+                        context.delete(message)
+                    }
+                    print("CoreData: Deleted the chat messages for chat \(chatId)")
+                }
+                
                 context.delete(firstEntity)
                 try context.save()
                 print("CoreData: Deleted the chat \(chatId)")
@@ -59,11 +66,48 @@ final class ChatSaveManager {
         }
     }
     
-    func loadChatMessages() {
+    func loadChatMessages(chatId: String) -> [ChatMessageEntity]? {
+        let predicate = NSPredicate(format: "chatId == %@", chatId)
+        let fetchRequest = ChatEntity.fetchRequest()
+        fetchRequest.predicate = predicate
         
+        do {
+            let chat = try context.fetch(fetchRequest)
+            if let firstChat = chat.first, chat.count > 0 {
+                print(firstChat.messages)
+                return firstChat.messages
+            }
+            return nil
+        }
+        catch let error as NSError{
+            print(error)
+            return nil
+        }
     }
     
-    func saveMessage() {
+    func saveMessage(chatId: String, textMessage: String?, imageMessage: String?, isSenderUser: Bool) {
+        let chatMessageEntity = ChatMessageEntity(context: context)
+        chatMessageEntity.imageMessage = imageMessage
+        chatMessageEntity.isSenderUser = isSenderUser
+        chatMessageEntity.textMessage = textMessage
         
+        let predicate = NSPredicate(format: "chatId == %@", chatId)
+        let fetchRequest = ChatEntity.fetchRequest()
+        fetchRequest.predicate = predicate
+        
+        do {
+            let chat = try context.fetch(fetchRequest)
+            if let firstChat = chat.first, chat.count > 0 {
+                chatMessageEntity.chat = firstChat
+                print("CoreData: Chat found \(firstChat.chatId)")
+                try context.save()
+                print("CoreData: Saved chat message")
+                return
+            }
+            print("CoreData: Chat cannot be found \(chatId)")
+        }
+        catch let error as NSError{
+            print(error)
+        }
     }
 }

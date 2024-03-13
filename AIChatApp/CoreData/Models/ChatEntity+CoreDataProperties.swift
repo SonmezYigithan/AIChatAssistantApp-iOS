@@ -20,9 +20,9 @@ extension ChatEntity {
     @NSManaged public var aiName: String?
     @NSManaged public var aiImage: String?
     @NSManaged public var startPrompt: String?
-    @NSManaged public var chatId: String?
+    @NSManaged public var chatId: String
     @NSManaged public var isStarred: Bool
-    @NSManaged public var createdAt: Date?
+    @NSManaged public var createdAt: Date
     @NSManaged public var messages: [ChatMessageEntity]?
 
 }
