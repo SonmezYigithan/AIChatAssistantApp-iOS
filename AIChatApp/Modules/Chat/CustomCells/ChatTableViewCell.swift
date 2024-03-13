@@ -84,7 +84,6 @@ class ChatTableViewCell: UITableViewCell {
             chatImageView.image = UIImage(systemName: presentation.senderImage ?? "")
         }else if senderType == .persona {
             chatImageView.image = UIImage(named: presentation.senderImage ?? "")
-//            chatImageView.image = PersonaManager.shared.getPersonaImage(of: presentation.senderName)
             backgroundColor = .customBackground
         }
     }

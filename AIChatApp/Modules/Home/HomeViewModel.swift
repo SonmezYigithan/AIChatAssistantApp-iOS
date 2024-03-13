@@ -40,7 +40,8 @@ extension HomeViewModel: HomeViewModelProtocol {
                                             startPrompt: nil,
                                             isStarred: false,
                                             createdAt: Date.now,
-                                            chatId: UUID().uuidString)
+                                            chatId: UUID().uuidString,
+                                            greetingMessage: "Hi! how can I help you?")
         let vc = ChatViewBuilder.make(chatParameters: chatParameters)
         ChatSaveManager.shared.createChat(chatParameters: chatParameters)
         view?.navigateTo(route: .chat(vc))

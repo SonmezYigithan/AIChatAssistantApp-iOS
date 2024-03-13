@@ -6,6 +6,7 @@
         <attribute name="chatId" attributeType="String"/>
         <attribute name="chatType" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="greeting" optional="YES" attributeType="String"/>
         <attribute name="isStarred" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="startPrompt" optional="YES" attributeType="String"/>
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ChatMessageEntity" inverseName="chat" inverseEntity="ChatMessageEntity"/>

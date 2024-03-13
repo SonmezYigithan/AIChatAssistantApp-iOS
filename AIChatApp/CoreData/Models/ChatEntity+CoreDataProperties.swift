@@ -24,6 +24,7 @@ extension ChatEntity {
     @NSManaged public var isStarred: Bool
     @NSManaged public var createdAt: Date
     @NSManaged public var messages: [ChatMessageEntity]?
+    @NSManaged public var greeting: String?
 
 }
 

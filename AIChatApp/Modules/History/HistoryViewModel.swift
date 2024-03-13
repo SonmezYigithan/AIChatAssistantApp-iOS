@@ -75,7 +75,8 @@ extension HistoryViewModel: HistoryViewModelProtocol {
                                             startPrompt: chat.startPrompt,
                                             isStarred: chat.isStarred,
                                             createdAt: chat.createdAt,
-                                            chatId: chat.chatId)
+                                            chatId: chat.chatId,
+                                            greetingMessage: nil)
         
         guard let chatMessages = chatMessages else { return }
         let vc = ChatViewBuilder.make(chatParameters: chatParameters, chatMessages: chatMessages)

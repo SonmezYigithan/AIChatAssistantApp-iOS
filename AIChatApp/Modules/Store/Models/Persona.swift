@@ -12,6 +12,7 @@ struct Persona {
     let description: String
     let prompt: String
     let image: String?
+    let greetingMessage: String
 }
 
 struct PersonaPresenter {

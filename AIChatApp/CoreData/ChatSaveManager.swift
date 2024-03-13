@@ -20,6 +20,7 @@ final class ChatSaveManager {
         chatEntity.isStarred = chatParameters.isStarred
         chatEntity.createdAt = chatParameters.createdAt
         chatEntity.aiImage = chatParameters.aiImage
+        chatEntity.greeting = chatParameters.greetingMessage
         
         do {
             try context.save()

@@ -22,6 +22,7 @@ struct ChatParameters {
     let isStarred: Bool
     let createdAt: Date
     let chatId: String
+    let greetingMessage: String?
 }
 
 protocol ChatViewModelProtocol {
@@ -65,15 +66,7 @@ extension ChatViewModel: ChatViewModelProtocol {
             return
         }
         
-        if chatParameters.chatType == .persona {
-            guard let startPrompt = chatParameters.startPrompt else { return }
-            let personaPrompt = ChatMessage(role: "assistant", content: startPrompt)
-            messages.append(personaPrompt)
-        }else if chatParameters.chatType == .imageGeneration {
-            displayGreetingMessage(message: "What would you like me to draw")
-        }else {
-            displayGreetingMessage(message: "Hi! how can I help you?")
-        }
+        displayGreetingMessage()
     }
     
     func loadChatMessages(chatMessages: [ChatMessageEntity]) {
@@ -176,10 +169,10 @@ extension ChatViewModel: ChatViewModelProtocol {
                                                 imageMessage: nil)
     }
     
-    private func displayGreetingMessage(message: String) {
-        let greetingMessage = ChatMessage(role: "assistant", content: message)
+    private func displayGreetingMessage() {
+        guard let greeting = chatParameters.greetingMessage else { return }
+        let greetingMessage = ChatMessage(role: "assistant", content: greeting)
         messages.append(greetingMessage)
         displayMessage(message: greetingMessage, imageMessage: nil)
     }
-    
 }
