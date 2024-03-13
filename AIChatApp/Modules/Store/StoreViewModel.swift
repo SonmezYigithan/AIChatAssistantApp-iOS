@@ -38,6 +38,7 @@ extension StoreViewModel: StoreViewModelProtocol {
     func selectExpert(at index: Int) {
         let persona = experts[index]
         let chatParameters = ChatParameters(chatType: .persona, aiName: persona.name, aiImage: persona.image, startPrompt: persona.prompt, isStarred: false, createdAt: Date.now)
+        ChatSaveManager.shared.createChat(chatParameters: chatParameters)
         let vc = ChatViewBuilder.make(chatParameters: chatParameters)
         view?.navigateToChatView(vc: vc)
     }
@@ -46,6 +47,7 @@ extension StoreViewModel: StoreViewModelProtocol {
         let absoluteIndex = section * 3 + index
         let persona = celebrities[absoluteIndex]
         let chatParameters = ChatParameters(chatType: .persona, aiName: persona.name, aiImage: persona.image, startPrompt: persona.prompt, isStarred: false, createdAt: Date.now)
+        ChatSaveManager.shared.createChat(chatParameters: chatParameters)
         let vc = ChatViewBuilder.make(chatParameters: chatParameters)
         view?.navigateToChatView(vc: vc)
     }
