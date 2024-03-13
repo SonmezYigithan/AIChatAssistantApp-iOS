@@ -28,7 +28,6 @@ extension HistoryViewModel: HistoryViewModelProtocol {
         self.chatEntities = chatEntities
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d"
         
         let chatHistoryPresentation = chatEntities.map {
             var chatTypeValue: ChatType = .textGeneration
@@ -43,10 +42,18 @@ extension HistoryViewModel: HistoryViewModelProtocol {
                 }
             }
             
+            var date = ""
+            if Calendar.current.isDateInToday($0.createdAt) {
+                dateFormatter.dateFormat = "h:mm a"
+            }else {
+                dateFormatter.dateFormat = "MMM d"
+            }
+            date = dateFormatter.string(from: $0.createdAt)
+            
             return ChatHistoryCellPresentation(aiName: $0.aiName ?? "",
                                                chatSummary: "No Summary Yet",
                                                chatMessage: chatMessage,
-                                               createdAt: dateFormatter.string(from: $0.createdAt),
+                                               createdAt: date,
                                                isStarred: $0.isStarred,
                                                image: $0.aiImage,
                                                chatType: chatTypeValue)}

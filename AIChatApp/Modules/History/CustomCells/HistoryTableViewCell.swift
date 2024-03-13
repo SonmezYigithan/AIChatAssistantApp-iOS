@@ -19,32 +19,33 @@ class HistoryTableViewCell: UITableViewCell {
     
     private let aiName: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 15)
+        label.font = .boldSystemFont(ofSize: 14)
         return label
     }()
     
     private let chatSummary: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 15)
+        label.font = .systemFont(ofSize: 14)
         return label
     }()
     
     private let chatMessage: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 15)
+        label.font = .systemFont(ofSize: 14)
         label.textColor = .customGrayText
         return label
     }()
     
     private let createdAt: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 15)
+        label.font = .systemFont(ofSize: 13)
         label.textColor = .customGrayText
         return label
     }()
     
     private let starImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.tintColor = .customGrayText
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -91,7 +92,7 @@ class HistoryTableViewCell: UITableViewCell {
         aiImage.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(15)
             make.centerY.equalToSuperview()
-            make.width.height.equalTo(50)
+            make.width.height.equalTo(35)
         }
         
         aiName.snp.makeConstraints { make in
@@ -116,8 +117,8 @@ class HistoryTableViewCell: UITableViewCell {
         
         starImageView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-15)
-            make.centerY.equalToSuperview()
-            make.width.height.equalTo(30)
+            make.top.equalTo(createdAt.snp.bottom).offset(10)
+            make.width.height.equalTo(23)
         }
     }
 }

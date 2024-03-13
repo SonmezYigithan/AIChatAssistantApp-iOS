@@ -74,7 +74,6 @@ final class ChatSaveManager {
         do {
             let chat = try context.fetch(fetchRequest)
             if let firstChat = chat.first, chat.count > 0 {
-                print(firstChat.messages)
                 return firstChat.messages
             }
             return nil
@@ -99,12 +98,11 @@ final class ChatSaveManager {
             let chat = try context.fetch(fetchRequest)
             if let firstChat = chat.first, chat.count > 0 {
                 chatMessageEntity.chat = firstChat
-                print("CoreData: Chat found \(firstChat.chatId)")
                 try context.save()
-                print("CoreData: Saved chat message")
+                print("CoreData: Saved chat message to \(firstChat.chatId)")
                 return
             }
-            print("CoreData: Chat cannot be found \(chatId)")
+            print("CoreData: Chat couldn't found \(chatId)")
         }
         catch let error as NSError{
             print(error)
