@@ -26,12 +26,14 @@ class HistoryTableViewCell: UITableViewCell {
     private let chatSummary: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
+        label.numberOfLines = 2
         return label
     }()
     
     private let chatMessage: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
+        label.numberOfLines = 1
         label.textColor = .customGrayText
         return label
     }()
@@ -102,11 +104,13 @@ class HistoryTableViewCell: UITableViewCell {
         
         chatSummary.snp.makeConstraints { make in
             make.leading.equalTo(aiImage.snp.trailing).offset(15)
+            make.trailing.equalTo(starImageView.snp.leading).offset(-10)
             make.top.equalTo(aiName.snp.bottom).offset(5)
         }
         
         chatMessage.snp.makeConstraints { make in
             make.leading.equalTo(aiImage.snp.trailing).offset(15)
+            make.trailing.equalTo(starImageView.snp.leading).offset(-10)
             make.top.equalTo(chatSummary.snp.bottom).offset(5)
         }
         
