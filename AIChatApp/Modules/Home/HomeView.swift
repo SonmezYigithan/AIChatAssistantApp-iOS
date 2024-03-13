@@ -18,10 +18,14 @@ final class HomeView: UIViewController {
     
     private let historyButton: UIButton = {
         let button = UIButton()
-        button.setTitle("History", for: .normal)
-        button.backgroundColor = .customBackground
-        button.layer.cornerRadius = 15
-        button.layer.masksToBounds = true
+        let customButtonView = ButtonWithImageView()
+        customButtonView.configure(labelText: "History", image: UIImage(systemName: "clock.arrow.circlepath"))
+        button.addSubview(customButtonView)
+        
+        customButtonView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         return button
     }()
     
@@ -139,6 +143,10 @@ final class HomeView: UIViewController {
         setupConstraints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
     private func prepareView() {
         view.backgroundColor = .systemBackground
         
@@ -176,8 +184,8 @@ final class HomeView: UIViewController {
         historyButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(15)
             make.top.equalTo(view.safeAreaLayoutGuide)
-            make.width.equalTo(50)
-            make.height.equalTo(25)
+            make.width.equalTo(100)
+            make.height.equalTo(35)
         }
         
         stackView.snp.makeConstraints { make in

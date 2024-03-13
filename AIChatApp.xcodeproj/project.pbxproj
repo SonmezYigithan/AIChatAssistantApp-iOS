@@ -42,6 +42,7 @@
 		C1DC4BCA2B9F1DBC00733BF7 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC4BC92B9F1DBC00733BF7 /* APIKeys.swift */; };
 		C1DC4BCD2B9F23D500733BF7 /* TextGenerationNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC4BCC2B9F23D500733BF7 /* TextGenerationNetworkManager.swift */; };
 		C1DC4BCF2B9F2F4B00733BF7 /* API-Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1DC4BCE2B9F2F4B00733BF7 /* API-Keys.plist */; };
+		C1DEE4482BA1E6A9005D89BB /* ButtonWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DEE4472BA1E6A9005D89BB /* ButtonWithImageView.swift */; };
 		C1E8DBCB2B9DEBB300DF8855 /* StoreCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8DBCA2B9DEBB300DF8855 /* StoreCollectionViewHeader.swift */; };
 		C1E8DBCD2B9DF29C00DF8855 /* StoreTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8DBCC2B9DF29C00DF8855 /* StoreTableViewHeader.swift */; };
 		C1E8DBCF2B9E1A9500DF8855 /* ChatViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8DBCE2B9E1A9500DF8855 /* ChatViewBuilder.swift */; };
@@ -100,6 +101,7 @@
 		C1DC4BC92B9F1DBC00733BF7 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		C1DC4BCC2B9F23D500733BF7 /* TextGenerationNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextGenerationNetworkManager.swift; sourceTree = "<group>"; };
 		C1DC4BCE2B9F2F4B00733BF7 /* API-Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "API-Keys.plist"; sourceTree = "<group>"; };
+		C1DEE4472BA1E6A9005D89BB /* ButtonWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithImageView.swift; sourceTree = "<group>"; };
 		C1E8DBCA2B9DEBB300DF8855 /* StoreCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewHeader.swift; sourceTree = "<group>"; };
 		C1E8DBCC2B9DF29C00DF8855 /* StoreTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTableViewHeader.swift; sourceTree = "<group>"; };
 		C1E8DBCE2B9E1A9500DF8855 /* ChatViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewBuilder.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				C120B6D22B9B926700422CE5 /* SeparatorLineHomeView.swift */,
+				C1DEE4472BA1E6A9005D89BB /* ButtonWithImageView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				C1E8DBDC2B9E3A6800DF8855 /* ChatViewModel.swift in Sources */,
 				C17EA6912BA1464D00ADFF91 /* ChatMessageEntity+CoreDataProperties.swift in Sources */,
 				C1E8DBCB2B9DEBB300DF8855 /* StoreCollectionViewHeader.swift in Sources */,
+				C1DEE4482BA1E6A9005D89BB /* ButtonWithImageView.swift in Sources */,
 				C1DC4BCD2B9F23D500733BF7 /* TextGenerationNetworkManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
