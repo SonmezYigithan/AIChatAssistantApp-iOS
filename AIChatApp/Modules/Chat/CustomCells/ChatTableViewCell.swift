@@ -109,17 +109,11 @@ class ChatTableViewCell: UITableViewCell {
     }
     
     private func configureStyle(presentation: ChatCellPresentation) {
-        if senderType == .chatGPT {
-            backgroundColor = .customBackground
-            senderImageView.image = UIImage(named: "chatgptlogo")
-        }else if senderType == .user {
+        if senderType == .user {
             senderImageView.image = UIImage(systemName: presentation.senderImage ?? "")
-        }else if senderType == .persona {
+        }else {
             senderImageView.image = UIImage(named: presentation.senderImage ?? "")
             backgroundColor = .customBackground
-        }else if senderType == .imageGenerator {
-            backgroundColor = .customBackground
-            senderImageView.image = UIImage(named: "chatgptlogo")
         }
     }
     
