@@ -26,6 +26,8 @@ final class HistoryView: UIViewController {
     var chatHistoryCellPresentation = [ChatHistoryCellPresentation]()
     private lazy var viewModel: HistoryViewModelProtocol = HistoryViewModel(view: self)
     
+    private let customSegmentedControl = CustomSegmentedControl()
+    
     private let chatHistoryTableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
@@ -43,9 +45,10 @@ final class HistoryView: UIViewController {
     }
     
     private func prepareView() {
-        view.backgroundColor = .red
+        view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Chat History"
+        view.addSubview(customSegmentedControl)
         view.addSubview(chatHistoryTableView)
         
         chatHistoryTableView.delegate = self
@@ -55,8 +58,14 @@ final class HistoryView: UIViewController {
     }
     
     private func setupConstraints() {
+        customSegmentedControl.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(200)
+        }
+        
         chatHistoryTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(customSegmentedControl.snp.bottom).offset(5)
+            make.leading.trailing.bottom.equalToSuperview()
         }
     }
 }
