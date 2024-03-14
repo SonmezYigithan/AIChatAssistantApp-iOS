@@ -37,11 +37,12 @@ final class HistoryView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.viewDidLoad()
         prepareView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        viewModel.fetchAllChatHistory()
+    override func viewDidAppear(_ animated: Bool) {
+//        customSegmentedControl.selectSegment(index: 0)
     }
     
     private func prepareView() {
@@ -53,6 +54,7 @@ final class HistoryView: UIViewController {
         
         chatHistoryTableView.delegate = self
         chatHistoryTableView.dataSource = self
+        customSegmentedControl.delegate = self
         
         setupConstraints()
     }
@@ -89,7 +91,7 @@ extension HistoryView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.loadChatMessages(at: indexPath.row)
+        viewModel.loadChatView(at: indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -112,5 +114,11 @@ extension HistoryView: HistoryViewProtocol {
     
     func showChatView(vc: ChatView) {
         show(vc, sender: self)
+    }
+}
+
+extension HistoryView: CustomSegmentedControlDelegate {
+    func selectedSegment(index: Int) {
+        viewModel.segmentSelected(index: index)
     }
 }

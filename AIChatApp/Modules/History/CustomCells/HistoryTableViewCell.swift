@@ -63,6 +63,10 @@ class HistoryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        starButton.tintColor = .customGrayText
+    }
+    
     func configure(with presentation: ChatHistoryCellPresentation) {
         isStarred = presentation.isStarred
         

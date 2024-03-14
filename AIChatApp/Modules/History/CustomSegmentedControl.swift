@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol CustomSegmentedControlDelegate {
+    func selectedSegment(index: Int)
+}
+
 /// https://stackoverflow.com/questions/45391386/customize-segmented-control-or
 class CustomSegmentedControl: UIView {
     private enum Constants {
@@ -14,6 +18,8 @@ class CustomSegmentedControl: UIView {
         static let underlineViewColor: UIColor = .customGreenText
         static let underlineViewHeight: CGFloat = 2
     }
+    
+    var delegate: CustomSegmentedControlDelegate?
     
     private let line: UIView = {
         let view = UIView()
@@ -28,6 +34,11 @@ class CustomSegmentedControl: UIView {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         return containerView
     }()
+    
+    func selectSegment(index: Int) {
+        segmentedControl.selectedSegmentIndex = index
+        segmentedControlValueChanged(segmentedControl)
+    }
 
     // Customised segmented control
     private lazy var segmentedControl: UISegmentedControl = {
@@ -138,6 +149,7 @@ class CustomSegmentedControl: UIView {
     }
     
     @objc private func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        delegate?.selectedSegment(index: sender.selectedSegmentIndex)
         changeSegmentedControlLinePosition()
     }
 

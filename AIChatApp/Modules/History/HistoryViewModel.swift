@@ -8,8 +8,11 @@
 import Foundation
 
 protocol HistoryViewModelProtocol: AnyObject {
-    func fetchAllChatHistory()
-    func loadChatMessages(at index: Int)
+    func viewDidLoad()
+    func fetchAllChats()
+    func fetchStarredChats()
+    func segmentSelected(index: Int)
+    func loadChatView(at index: Int)
     func deleteChat(at index: Int)
     func starChat(at index: Int)
     func unStarChat(at index: Int)
@@ -18,6 +21,7 @@ protocol HistoryViewModelProtocol: AnyObject {
 final class HistoryViewModel {
     weak var view: HistoryViewProtocol?
     var chatEntities = [ChatEntity]()
+    var starredChatEntities = [ChatEntity]()
     
     init(view: HistoryViewProtocol) {
         self.view = view
@@ -25,10 +29,33 @@ final class HistoryViewModel {
 }
 
 extension HistoryViewModel: HistoryViewModelProtocol {
-    func fetchAllChatHistory() {
+    func viewDidLoad() {
         guard let chatEntities = ChatSaveManager.shared.loadAllChats() else { return }
         self.chatEntities = chatEntities
-        
+        let chatHistoryPresentation = mapChatEntitiesToPresentation(chatEntities: chatEntities)
+        view?.showChatHistory(with: chatHistoryPresentation)
+    }
+    
+    func segmentSelected(index: Int) {
+        if index == 0 {
+            fetchAllChats()
+        } else if index == 1 {
+            fetchStarredChats()
+        }
+    }
+    
+    func fetchAllChats() {
+        let chatHistoryPresentation = mapChatEntitiesToPresentation(chatEntities: chatEntities)
+        view?.showChatHistory(with: chatHistoryPresentation)
+    }
+    
+    func fetchStarredChats() {
+        starredChatEntities = chatEntities.filter { $0.isStarred }
+        let chatHistoryPresentation = mapChatEntitiesToPresentation(chatEntities: starredChatEntities)
+        view?.showChatHistory(with: chatHistoryPresentation)
+    }
+    
+    private func mapChatEntitiesToPresentation(chatEntities: [ChatEntity]) -> [ChatHistoryCellPresentation] {
         let dateFormatter = DateFormatter()
         
         let chatHistoryPresentation = chatEntities.map {
@@ -58,12 +85,12 @@ extension HistoryViewModel: HistoryViewModelProtocol {
                                                createdAt: date,
                                                isStarred: $0.isStarred,
                                                image: $0.aiImage,
-                                               chatType: chatTypeValue)}
-        
-        view?.showChatHistory(with: chatHistoryPresentation)
+                                               chatType: chatTypeValue)
+        }
+        return chatHistoryPresentation
     }
     
-    func loadChatMessages(at index: Int) {
+    func loadChatView(at index: Int) {
         let chat = chatEntities[index]
         var chatTypeValue: ChatType = .textGeneration
         if let chatType = ChatType(rawValue: Int(chat.chatType)) {
