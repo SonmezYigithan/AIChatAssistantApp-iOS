@@ -10,6 +10,9 @@ import SnapKit
 
 class HistoryTableViewCell: UITableViewCell {
     static let identifier = "HistoryTableViewCell"
+    weak var viewModel: HistoryViewModelProtocol?
+    var index: Int = 0
+    var isStarred = false
     
     private let aiImage: UIImageView = {
         let imageView = UIImageView()
@@ -45,11 +48,10 @@ class HistoryTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let starImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.tintColor = .customGrayText
-        imageView.contentMode = .scaleAspectFit
-        return imageView
+    private let starButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .customGrayText
+        return button
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -62,6 +64,8 @@ class HistoryTableViewCell: UITableViewCell {
     }
     
     func configure(with presentation: ChatHistoryCellPresentation) {
+        isStarred = presentation.isStarred
+        
         if let image = presentation.image {
             self.aiImage.image = UIImage(named: image)
         }
@@ -70,7 +74,15 @@ class HistoryTableViewCell: UITableViewCell {
         chatTitle.text =  presentation.chatTitle ?? "New Chat"
         chatMessage.text = presentation.chatMessage
         createdAt.text =  presentation.createdAt
-        starImageView.image = presentation.isStarred ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
+        
+        if presentation.isStarred {
+            starButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            starButton.tintColor = .customGreenText
+        }else {
+            starButton.setImage(UIImage(systemName: "star"), for: .normal)
+        }
+        
+        starButton.addTarget(self, action: #selector(starButtonTapped), for: .touchUpInside)
     }
     
     private func prepareView() {
@@ -79,9 +91,23 @@ class HistoryTableViewCell: UITableViewCell {
         addSubview(chatTitle)
         addSubview(chatMessage)
         addSubview(createdAt)
-        addSubview(starImageView)
+        contentView.addSubview(starButton)
         
         setupConstraints()
+    }
+    
+    @objc private func starButtonTapped() {
+        if isStarred {
+            viewModel?.unStarChat(at: index)
+            starButton.setImage(UIImage(systemName: "star"), for: .normal)
+            starButton.tintColor = .customGrayText
+            isStarred = false
+        }else {
+            viewModel?.starChat(at: index)
+            starButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            starButton.tintColor = .customGreenText
+            isStarred = true
+        }
     }
     
     private func setupConstraints() {
@@ -98,13 +124,13 @@ class HistoryTableViewCell: UITableViewCell {
         
         chatTitle.snp.makeConstraints { make in
             make.leading.equalTo(aiImage.snp.trailing).offset(15)
-            make.trailing.equalTo(starImageView.snp.leading).offset(-10)
+            make.trailing.equalTo(starButton.snp.leading).offset(-10)
             make.top.equalTo(aiName.snp.bottom).offset(5)
         }
         
         chatMessage.snp.makeConstraints { make in
             make.leading.equalTo(aiImage.snp.trailing).offset(15)
-            make.trailing.equalTo(starImageView.snp.leading).offset(-10)
+            make.trailing.equalTo(starButton.snp.leading).offset(-10)
             make.top.equalTo(chatTitle.snp.bottom).offset(5)
         }
         
@@ -113,7 +139,7 @@ class HistoryTableViewCell: UITableViewCell {
             make.top.equalToSuperview().offset(10)
         }
         
-        starImageView.snp.makeConstraints { make in
+        starButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-15)
             make.top.equalTo(createdAt.snp.bottom).offset(10)
             make.width.height.equalTo(23)

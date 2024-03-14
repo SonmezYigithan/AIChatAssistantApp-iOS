@@ -129,4 +129,28 @@ final class ChatSaveManager {
             print(error)
         }
     }
+    
+    func starChat(chatEntity: ChatEntity) {
+        chatEntity.isStarred = true
+        
+        do {
+            try context.save()
+            print("CoreData: starred chat \(chatEntity.chatId)")
+        }
+        catch let error as NSError{
+            print(error)
+        }
+    }
+    
+    func unStarChat(chatEntity: ChatEntity) {
+        chatEntity.isStarred = false
+        
+        do {
+            try context.save()
+            print("CoreData: unStarred chat \(chatEntity.chatId)")
+        }
+        catch let error as NSError{
+            print(error)
+        }
+    }
 }

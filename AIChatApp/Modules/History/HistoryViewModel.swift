@@ -7,10 +7,12 @@
 
 import Foundation
 
-protocol HistoryViewModelProtocol {
+protocol HistoryViewModelProtocol: AnyObject {
     func fetchAllChatHistory()
     func loadChatMessages(at index: Int)
     func deleteChat(at index: Int)
+    func starChat(at index: Int)
+    func unStarChat(at index: Int)
 }
 
 final class HistoryViewModel {
@@ -87,5 +89,13 @@ extension HistoryViewModel: HistoryViewModelProtocol {
     func deleteChat(at index: Int) {
         ChatSaveManager.shared.deleteChat(chatId: chatEntities[index].chatId)
         chatEntities.remove(at: index)
+    }
+    
+    func starChat(at index: Int) {
+        ChatSaveManager.shared.starChat(chatEntity: chatEntities[index])
+    }
+    
+    func unStarChat(at index: Int) {
+        ChatSaveManager.shared.unStarChat(chatEntity: chatEntities[index])
     }
 }

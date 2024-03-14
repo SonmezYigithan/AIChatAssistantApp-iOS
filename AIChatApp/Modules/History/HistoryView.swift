@@ -69,6 +69,8 @@ extension HistoryView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as? HistoryTableViewCell else { return UITableViewCell() }
         cell.configure(with: chatHistoryCellPresentation[indexPath.row])
+        cell.viewModel = viewModel
+        cell.index = indexPath.row
         cell.selectionStyle = .none
         return cell
     }
