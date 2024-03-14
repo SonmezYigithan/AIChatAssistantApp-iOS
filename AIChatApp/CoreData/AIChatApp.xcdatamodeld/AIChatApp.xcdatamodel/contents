@@ -13,7 +13,7 @@
         <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ChatMessageEntity" inverseName="chat" inverseEntity="ChatMessageEntity"/>
     </entity>
     <entity name="ChatMessageEntity" representedClassName=".ChatMessageEntity" syncable="YES">
-        <attribute name="imageMessage" optional="YES" attributeType="String"/>
+        <attribute name="imageMessage" optional="YES" attributeType="String" customClassName="NSObject"/>
         <attribute name="isSenderUser" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="textMessage" attributeType="String"/>
         <relationship name="chat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ChatEntity" inverseName="messages" inverseEntity="ChatEntity"/>

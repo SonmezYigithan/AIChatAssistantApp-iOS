@@ -2,7 +2,7 @@
 //  ChatEntity+CoreDataProperties.swift
 //  AIChatApp
 //
-//  Created by Yiğithan Sönmez on 13.03.2024.
+//  Created by Yiğithan Sönmez on 14.03.2024.
 //
 //
 
@@ -16,16 +16,16 @@ extension ChatEntity {
         return NSFetchRequest<ChatEntity>(entityName: "ChatEntity")
     }
 
-    @NSManaged public var chatType: Int64
-    @NSManaged public var aiName: String?
     @NSManaged public var aiImage: String?
-    @NSManaged public var chatTitle: String?
-    @NSManaged public var startPrompt: String?
+    @NSManaged public var aiName: String?
     @NSManaged public var chatId: String
-    @NSManaged public var isStarred: Bool
+    @NSManaged public var chatTitle: String?
+    @NSManaged public var chatType: Int64
     @NSManaged public var createdAt: Date
-    @NSManaged public var messages: [ChatMessageEntity]?
     @NSManaged public var greeting: String?
+    @NSManaged public var isStarred: Bool
+    @NSManaged public var startPrompt: String?
+    @NSManaged public var messages: [ChatMessageEntity]?
 
 }
 

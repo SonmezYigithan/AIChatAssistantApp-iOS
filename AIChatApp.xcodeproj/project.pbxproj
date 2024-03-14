@@ -33,15 +33,18 @@
 		C17EA66E2BA12EB100ADFF91 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17EA66D2BA12EB100ADFF91 /* HistoryView.swift */; };
 		C17EA6792BA1312000ADFF91 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17EA6782BA1312000ADFF91 /* HistoryTableViewCell.swift */; };
 		C17EA67B2BA133CB00ADFF91 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17EA67A2BA133CB00ADFF91 /* HistoryViewModel.swift */; };
-		C17EA6902BA1464D00ADFF91 /* ChatMessageEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17EA68C2BA1464D00ADFF91 /* ChatMessageEntity+CoreDataClass.swift */; };
-		C17EA6912BA1464D00ADFF91 /* ChatMessageEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17EA68D2BA1464D00ADFF91 /* ChatMessageEntity+CoreDataProperties.swift */; };
-		C17EA6922BA1464D00ADFF91 /* ChatEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17EA68E2BA1464D00ADFF91 /* ChatEntity+CoreDataClass.swift */; };
-		C17EA6932BA1464D00ADFF91 /* ChatEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17EA68F2BA1464D00ADFF91 /* ChatEntity+CoreDataProperties.swift */; };
 		C1D88BC32BA31DA3006C3218 /* CameraInputViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D88BC22BA31DA3006C3218 /* CameraInputViewBuilder.swift */; };
+		C1D88BC52BA33EF3006C3218 /* ImageGenerationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D88BC42BA33EF3006C3218 /* ImageGenerationManager.swift */; };
+		C1D88BC82BA3424A006C3218 /* ChatGPTImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D88BC72BA3424A006C3218 /* ChatGPTImageResponse.swift */; };
+		C1D88BCB2BA3492A006C3218 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C1D88BCA2BA3492A006C3218 /* Kingfisher */; };
+		C1D88BD02BA34EF0006C3218 /* ChatEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D88BCC2BA34EF0006C3218 /* ChatEntity+CoreDataClass.swift */; };
+		C1D88BD12BA34EF0006C3218 /* ChatEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D88BCD2BA34EF0006C3218 /* ChatEntity+CoreDataProperties.swift */; };
+		C1D88BD22BA34EF0006C3218 /* ChatMessageEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D88BCE2BA34EF0006C3218 /* ChatMessageEntity+CoreDataClass.swift */; };
+		C1D88BD32BA34EF0006C3218 /* ChatMessageEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D88BCF2BA34EF0006C3218 /* ChatMessageEntity+CoreDataProperties.swift */; };
 		C1DC4BC62B9F1D8200733BF7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC4BC52B9F1D8200733BF7 /* NetworkManager.swift */; };
 		C1DC4BC82B9F1DA000733BF7 /* OpenAINetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC4BC72B9F1DA000733BF7 /* OpenAINetworkHelper.swift */; };
 		C1DC4BCA2B9F1DBC00733BF7 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC4BC92B9F1DBC00733BF7 /* APIKeys.swift */; };
-		C1DC4BCD2B9F23D500733BF7 /* TextGenerationNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC4BCC2B9F23D500733BF7 /* TextGenerationNetworkManager.swift */; };
+		C1DC4BCD2B9F23D500733BF7 /* TextGenerationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC4BCC2B9F23D500733BF7 /* TextGenerationManager.swift */; };
 		C1DC4BCF2B9F2F4B00733BF7 /* API-Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1DC4BCE2B9F2F4B00733BF7 /* API-Keys.plist */; };
 		C1DEE4482BA1E6A9005D89BB /* ButtonWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DEE4472BA1E6A9005D89BB /* ButtonWithImageView.swift */; };
 		C1DEE44B2BA23B8A005D89BB /* CameraInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DEE44A2BA23B8A005D89BB /* CameraInputView.swift */; };
@@ -95,15 +98,17 @@
 		C17EA66D2BA12EB100ADFF91 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		C17EA6782BA1312000ADFF91 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		C17EA67A2BA133CB00ADFF91 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
-		C17EA68C2BA1464D00ADFF91 /* ChatMessageEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatMessageEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C17EA68D2BA1464D00ADFF91 /* ChatMessageEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatMessageEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C17EA68E2BA1464D00ADFF91 /* ChatEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C17EA68F2BA1464D00ADFF91 /* ChatEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C1D88BC22BA31DA3006C3218 /* CameraInputViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraInputViewBuilder.swift; sourceTree = "<group>"; };
+		C1D88BC42BA33EF3006C3218 /* ImageGenerationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGenerationManager.swift; sourceTree = "<group>"; };
+		C1D88BC72BA3424A006C3218 /* ChatGPTImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTImageResponse.swift; sourceTree = "<group>"; };
+		C1D88BCC2BA34EF0006C3218 /* ChatEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C1D88BCD2BA34EF0006C3218 /* ChatEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C1D88BCE2BA34EF0006C3218 /* ChatMessageEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatMessageEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C1D88BCF2BA34EF0006C3218 /* ChatMessageEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatMessageEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C1DC4BC52B9F1D8200733BF7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C1DC4BC72B9F1DA000733BF7 /* OpenAINetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAINetworkHelper.swift; sourceTree = "<group>"; };
 		C1DC4BC92B9F1DBC00733BF7 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
-		C1DC4BCC2B9F23D500733BF7 /* TextGenerationNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextGenerationNetworkManager.swift; sourceTree = "<group>"; };
+		C1DC4BCC2B9F23D500733BF7 /* TextGenerationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextGenerationManager.swift; sourceTree = "<group>"; };
 		C1DC4BCE2B9F2F4B00733BF7 /* API-Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "API-Keys.plist"; sourceTree = "<group>"; };
 		C1DEE4472BA1E6A9005D89BB /* ButtonWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithImageView.swift; sourceTree = "<group>"; };
 		C1DEE44A2BA23B8A005D89BB /* CameraInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraInputView.swift; sourceTree = "<group>"; };
@@ -122,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1D88BCB2BA3492A006C3218 /* Kingfisher in Frameworks */,
 				C17EA65C2BA0C9FB00ADFF91 /* Alamofire in Frameworks */,
 				C17EA65F2BA0CA0200ADFF91 /* SnapKit in Frameworks */,
 			);
@@ -277,10 +283,10 @@
 		C17EA6612BA1268B00ADFF91 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C17EA68C2BA1464D00ADFF91 /* ChatMessageEntity+CoreDataClass.swift */,
-				C17EA68D2BA1464D00ADFF91 /* ChatMessageEntity+CoreDataProperties.swift */,
-				C17EA68E2BA1464D00ADFF91 /* ChatEntity+CoreDataClass.swift */,
-				C17EA68F2BA1464D00ADFF91 /* ChatEntity+CoreDataProperties.swift */,
+				C1D88BCC2BA34EF0006C3218 /* ChatEntity+CoreDataClass.swift */,
+				C1D88BCD2BA34EF0006C3218 /* ChatEntity+CoreDataProperties.swift */,
+				C1D88BCE2BA34EF0006C3218 /* ChatMessageEntity+CoreDataClass.swift */,
+				C1D88BCF2BA34EF0006C3218 /* ChatMessageEntity+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -303,6 +309,14 @@
 			path = CustomCells;
 			sourceTree = "<group>";
 		};
+		C1D88BC62BA3423F006C3218 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C1D88BC72BA3424A006C3218 /* ChatGPTImageResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C1DC4BC42B9F1D7900733BF7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,7 +329,9 @@
 		C1DC4BCB2B9F23AC00733BF7 /* ChatGPT */ = {
 			isa = PBXGroup;
 			children = (
-				C1DC4BCC2B9F23D500733BF7 /* TextGenerationNetworkManager.swift */,
+				C1D88BC62BA3423F006C3218 /* Models */,
+				C1DC4BCC2B9F23D500733BF7 /* TextGenerationManager.swift */,
+				C1D88BC42BA33EF3006C3218 /* ImageGenerationManager.swift */,
 			);
 			path = ChatGPT;
 			sourceTree = "<group>";
@@ -394,6 +410,7 @@
 			packageProductDependencies = (
 				C17EA65B2BA0C9FB00ADFF91 /* Alamofire */,
 				C17EA65E2BA0CA0200ADFF91 /* SnapKit */,
+				C1D88BCA2BA3492A006C3218 /* Kingfisher */,
 			);
 			productName = AIChatApp;
 			productReference = C120B69C2B9B5C9A00422CE5 /* AIChatApp.app */;
@@ -426,6 +443,7 @@
 			packageReferences = (
 				C17EA65A2BA0C9FB00ADFF91 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				C17EA65D2BA0CA0200ADFF91 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				C1D88BC92BA3492A006C3218 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = C120B69D2B9B5C9A00422CE5 /* Products */;
 			projectDirPath = "";
@@ -460,13 +478,15 @@
 				C1E8DBD22B9E1DB300DF8855 /* MessageBarView.swift in Sources */,
 				C120B6CB2B9B621800422CE5 /* SettingsView.swift in Sources */,
 				C17EA66E2BA12EB100ADFF91 /* HistoryView.swift in Sources */,
+				C1D88BD22BA34EF0006C3218 /* ChatMessageEntity+CoreDataClass.swift in Sources */,
 				C13AD16B2B9F78BE009A5E01 /* PersonaManager.swift in Sources */,
 				C1DC4BC62B9F1D8200733BF7 /* NetworkManager.swift in Sources */,
+				C1D88BD32BA34EF0006C3218 /* ChatMessageEntity+CoreDataProperties.swift in Sources */,
 				C13AD16E2B9F8CB3009A5E01 /* Persona.swift in Sources */,
 				C1DC4BCA2B9F1DBC00733BF7 /* APIKeys.swift in Sources */,
 				C1ECCC542BA2911D007EA571 /* CameraInputViewModel.swift in Sources */,
+				C1D88BC52BA33EF3006C3218 /* ImageGenerationManager.swift in Sources */,
 				C1DEE44B2BA23B8A005D89BB /* CameraInputView.swift in Sources */,
-				C17EA6922BA1464D00ADFF91 /* ChatEntity+CoreDataClass.swift in Sources */,
 				C1E8DBCF2B9E1A9500DF8855 /* ChatViewBuilder.swift in Sources */,
 				C17EA6632BA126A700ADFF91 /* ChatSaveManager.swift in Sources */,
 				C120B6AA2B9B5C9A00422CE5 /* AIChatApp.xcdatamodeld in Sources */,
@@ -476,25 +496,25 @@
 				C120B6A02B9B5C9A00422CE5 /* AppDelegate.swift in Sources */,
 				C120B6CD2B9B670C00422CE5 /* HomeViewModel.swift in Sources */,
 				C120B6D02B9B7DA500422CE5 /* ChatView.swift in Sources */,
-				C17EA6932BA1464D00ADFF91 /* ChatEntity+CoreDataProperties.swift in Sources */,
 				C13AD1752BA0A868009A5E01 /* SettingsViewModel.swift in Sources */,
 				C120B6B92B9B5CBB00422CE5 /* HomeView.swift in Sources */,
 				C17EA67B2BA133CB00ADFF91 /* HistoryViewModel.swift in Sources */,
 				C120B6A22B9B5C9A00422CE5 /* SceneDelegate.swift in Sources */,
+				C1D88BD02BA34EF0006C3218 /* ChatEntity+CoreDataClass.swift in Sources */,
 				C120B6C92B9B61EC00422CE5 /* StoreView.swift in Sources */,
-				C17EA6902BA1464D00ADFF91 /* ChatMessageEntity+CoreDataClass.swift in Sources */,
 				C1E8DBCD2B9DF29C00DF8855 /* StoreTableViewHeader.swift in Sources */,
 				C13AD1732BA09882009A5E01 /* MoreAppsTableViewCell.swift in Sources */,
 				C1D88BC32BA31DA3006C3218 /* CameraInputViewBuilder.swift in Sources */,
 				C120B6D52B9D112400422CE5 /* StoreViewModel.swift in Sources */,
+				C1D88BC82BA3424A006C3218 /* ChatGPTImageResponse.swift in Sources */,
 				C1E8DBDA2B9E39C600DF8855 /* ChatMessage.swift in Sources */,
 				C120B6C52B9B60FB00422CE5 /* TabBar.swift in Sources */,
 				C1E8DBD52B9E254F00DF8855 /* ChatTableViewCell.swift in Sources */,
 				C1E8DBDC2B9E3A6800DF8855 /* ChatViewModel.swift in Sources */,
-				C17EA6912BA1464D00ADFF91 /* ChatMessageEntity+CoreDataProperties.swift in Sources */,
+				C1D88BD12BA34EF0006C3218 /* ChatEntity+CoreDataProperties.swift in Sources */,
 				C1E8DBCB2B9DEBB300DF8855 /* StoreCollectionViewHeader.swift in Sources */,
 				C1DEE4482BA1E6A9005D89BB /* ButtonWithImageView.swift in Sources */,
-				C1DC4BCD2B9F23D500733BF7 /* TextGenerationNetworkManager.swift in Sources */,
+				C1DC4BCD2B9F23D500733BF7 /* TextGenerationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,6 +757,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		C1D88BC92BA3492A006C3218 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -749,6 +777,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C17EA65D2BA0CA0200ADFF91 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		C1D88BCA2BA3492A006C3218 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1D88BC92BA3492A006C3218 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 

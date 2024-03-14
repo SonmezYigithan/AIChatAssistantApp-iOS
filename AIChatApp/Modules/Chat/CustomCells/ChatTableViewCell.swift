@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 enum SenderType {
     case user
@@ -19,7 +20,7 @@ struct ChatCellPresentation {
     let senderName: String
     let senderImage: String?
     let message: String
-    let imageMessage: [UIImage]?
+    let imageMessage: [String]?
 }
 
 class ChatTableViewCell: UITableViewCell {
@@ -43,9 +44,23 @@ class ChatTableViewCell: UITableViewCell {
         return label
     }()
     
-    let chatImageView: UIImageView = {
+    let senderImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.tintColor = .gray
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
+    private let firstImageMessageImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
+    private let secondImageMessageImageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -58,7 +73,9 @@ class ChatTableViewCell: UITableViewCell {
         
         contentView.addSubview(senderNameLabel)
         contentView.addSubview(messageLabel)
-        contentView.addSubview(chatImageView)
+        contentView.addSubview(senderImageView)
+        contentView.addSubview(firstImageMessageImageView)
+        contentView.addSubview(secondImageMessageImageView)
         
         setupConstraints()
     }
@@ -72,19 +89,37 @@ class ChatTableViewCell: UITableViewCell {
         messageLabel.text = presentation.message
         self.senderType = presentation.senderType
         
+        if let imageMessage = presentation.imageMessage {
+            var index = 0
+            for _ in imageMessage {
+                if index == 0 {
+                    if let url1 = URL(string: imageMessage[0]) {
+                        firstImageMessageImageView.kf.setImage(with: url1)
+                    }
+                }else if index == 1 {
+                    if let url2 = URL(string: imageMessage[1]) {
+                        secondImageMessageImageView.kf.setImage(with: url2)
+                    }
+                }
+                index += 1
+            }
+        }
+        
         configureStyle(presentation: presentation)
     }
     
     private func configureStyle(presentation: ChatCellPresentation) {
         if senderType == .chatGPT {
             backgroundColor = .customBackground
-            chatImageView.image = UIImage(named: "chatgptlogo")
-            chatImageView.tintColor = .customChatGPTGreen
+            senderImageView.image = UIImage(named: "chatgptlogo")
         }else if senderType == .user {
-            chatImageView.image = UIImage(systemName: presentation.senderImage ?? "")
+            senderImageView.image = UIImage(systemName: presentation.senderImage ?? "")
         }else if senderType == .persona {
-            chatImageView.image = UIImage(named: presentation.senderImage ?? "")
+            senderImageView.image = UIImage(named: presentation.senderImage ?? "")
             backgroundColor = .customBackground
+        }else if senderType == .imageGenerator {
+            backgroundColor = .customBackground
+            senderImageView.image = UIImage(named: "chatgptlogo")
         }
     }
     
@@ -95,7 +130,7 @@ class ChatTableViewCell: UITableViewCell {
     // MARK: - Constraints
     
     private func setupConstraints() {
-        chatImageView.snp.makeConstraints { make in
+        senderImageView.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().offset(15)
             make.width.equalTo(30)
             make.height.equalTo(30)
@@ -103,15 +138,27 @@ class ChatTableViewCell: UITableViewCell {
         
         senderNameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(15)
-            make.leading.equalTo(chatImageView.snp.trailing).offset(15)
+            make.leading.equalTo(senderImageView.snp.trailing).offset(15)
             make.trailing.equalToSuperview().offset(-10)
         }
         
         messageLabel.snp.makeConstraints { make in
             make.top.equalTo(senderNameLabel.snp.bottom).offset(5)
             make.bottom.equalToSuperview().offset(-15)
-            make.leading.equalTo(chatImageView.snp.trailing).offset(15)
+            make.leading.equalTo(senderImageView.snp.trailing).offset(15)
             make.trailing.equalToSuperview().offset(-15)
+        }
+        
+        firstImageMessageImageView.snp.makeConstraints { make in
+            make.top.equalTo(messageLabel.snp.bottom).offset(5)
+            make.leading.equalTo(senderImageView.snp.trailing).offset(15)
+            make.height.width.equalTo(150)
+        }
+        
+        secondImageMessageImageView.snp.makeConstraints { make in
+            make.top.equalTo(messageLabel.snp.bottom).offset(5)
+            make.leading.equalTo(firstImageMessageImageView.snp.trailing).offset(5)
+            make.height.width.equalTo(150)
         }
     }
 }

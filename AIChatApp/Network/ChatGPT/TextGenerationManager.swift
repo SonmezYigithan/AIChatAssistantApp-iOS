@@ -7,12 +7,8 @@
 
 import Alamofire
 
-protocol TextGenerationNetworkManagerProtocol {
-    
-}
-
-final class TextGenerationNetworkManager {
-    static let shared = TextGenerationNetworkManager()
+final class TextGenerationManager {
+    static let shared = TextGenerationManager()
     
     private func convertChatMessagesToParameters(messages: [ChatMessage]) -> Parameters {
         // Convert array of ChatMessages to array of dictionaries

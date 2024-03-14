@@ -86,9 +86,9 @@ final class ChatSaveManager {
         }
     }
     
-    func saveMessage(chatId: String, textMessage: String?, imageMessage: String?, isSenderUser: Bool) {
+    func saveMessage(chatId: String, textMessage: String?, imageMessage: [String]?, isSenderUser: Bool) {
         let chatMessageEntity = ChatMessageEntity(context: context)
-        chatMessageEntity.imageMessage = imageMessage
+        chatMessageEntity.imageMessage = imageMessage?.first
         chatMessageEntity.isSenderUser = isSenderUser
         chatMessageEntity.textMessage = textMessage
         

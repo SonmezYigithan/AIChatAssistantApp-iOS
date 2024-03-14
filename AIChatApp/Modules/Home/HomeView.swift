@@ -164,6 +164,7 @@ final class HomeView: UIViewController {
         chatButton.addTarget(self, action: #selector(chatButtonClicked), for: .touchUpInside)
         cameraButton.addTarget(self, action: #selector(cameraButtonClicked), for: .touchUpInside)
         historyButton.addTarget(self, action: #selector(historyButtonClicked), for: .touchUpInside)
+        imageGenerationButton.addTarget(self, action: #selector(imageGenerationButtonClicked), for: .touchUpInside)
     }
     
     @objc private func chatButtonClicked() {
@@ -176,6 +177,10 @@ final class HomeView: UIViewController {
     
     @objc private func historyButtonClicked() {
         viewModel.historyButtonClicked()
+    }
+    
+    @objc private func imageGenerationButtonClicked() {
+        viewModel.imageGenerationButtonClicked()
     }
     
     // MARK: - Constraints

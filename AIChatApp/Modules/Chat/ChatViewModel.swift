@@ -77,17 +77,13 @@ extension ChatViewModel: ChatViewModelProtocol {
     
     func loadChatMessages(chatMessages: [ChatMessageEntity]) {
         isViewLoaded = true
-        messages = chatMessages.map {
-            ChatMessage(role: $0.isSenderUser ? "user" : "assistant", content: $0.textMessage ?? "")
-        }
-        
-        displayAllLoadedMessages(messages: messages)
+        displayAllLoadedMessages(chatMessages: chatMessages)
     }
     
     private func generateText() {
         if chatParameters.chatType == .persona {
             let startPrompt = ChatMessage(role: "assistant", content: chatParameters.startPrompt ?? "")
-            TextGenerationNetworkManager.shared.completeMessageAsPersona(messages: messages, personaPrompt: startPrompt){ [weak self] result in
+            TextGenerationManager.shared.completeMessageAsPersona(messages: messages, personaPrompt: startPrompt){ [weak self] result in
                 switch result {
                 case .success(let chatMessage):
                     let message = ChatMessage(role: "assistant", content: chatMessage.choices[0].message.content)
@@ -96,10 +92,11 @@ extension ChatViewModel: ChatViewModelProtocol {
                     self?.displayMessage(message: message, imageMessage: nil)
                 case .failure(let error):
                     print(error)
+                    self?.sendNetworkErrorMessage()
                 }
             }
         } else {
-            TextGenerationNetworkManager.shared.completeMessage(messages: messages) { [weak self] result in
+            TextGenerationManager.shared.completeMessage(messages: messages) { [weak self] result in
                 switch result {
                 case .success(let chatMessage):
                     let message = ChatMessage(role: "assistant", content: chatMessage.choices[0].message.content)
@@ -108,17 +105,33 @@ extension ChatViewModel: ChatViewModelProtocol {
                     self?.displayMessage(message: message, imageMessage: nil)
                 case .failure(let error):
                     print(error)
+                    self?.sendNetworkErrorMessage()
                 }
             }
         }
     }
     
     private func generateImage() {
-        // TODO: Generate Image
-        print("generating image...")
+        if let message = messages.last {
+            ImageGenerationManager.shared.generateImageFromMessage(message: message) { [weak self] result in
+                switch result {
+                case .success(let response):
+                    print(response.data?[0].url ?? "")
+                    guard let imageData = response.data?[0].url else {
+                        self?.sendNetworkErrorMessage()
+                        return
+                    }
+                    let responseData: [String] = [imageData]
+                    self?.displayMessage(message: ChatMessage(role: "assistant", content: ""), imageMessage: responseData)
+                case .failure(let error):
+                    print(error)
+                    self?.sendNetworkErrorMessage()
+                }
+            }
+        }
     }
     
-    private func displayMessage(message: ChatMessage, imageMessage: UIImage?) {
+    private func displayMessage(message: ChatMessage, imageMessage: [String]?) {
         let presentation = createChatCellPresentation(message: message, imageMessage: imageMessage)
         var isSenderUser: Bool
         
@@ -130,20 +143,29 @@ extension ChatViewModel: ChatViewModelProtocol {
             isSenderUser = false
         }
         
-        ChatSaveManager.shared.saveMessage(chatId: chatParameters.chatId, textMessage: message.content, imageMessage: nil, isSenderUser: isSenderUser)
+        ChatSaveManager.shared.saveMessage(chatId: chatParameters.chatId, textMessage: message.content, imageMessage: imageMessage, isSenderUser: isSenderUser)
         
         view?.displayMessage(message: presentation)
     }
     
-    private func displayAllLoadedMessages(messages: [ChatMessage]) {
+    private func displayAllLoadedMessages(chatMessages: [ChatMessageEntity]) {
         var presentations = [ChatCellPresentation]()
-        for message in messages {
-            presentations.append(createChatCellPresentation(message: message, imageMessage: nil))
+        for messageEntity in chatMessages {
+            let chatMessage = ChatMessage(role: messageEntity.isSenderUser ? "user" : "assistant", content: messageEntity.textMessage ?? "")
+            
+            // TODO: Later implement multiple image generation.
+            // for now I'm just gonna pass first imageMessage as string array
+            var imageMessages: [String] = .init()
+            if let imageMessage = messageEntity.imageMessage {
+                imageMessages = [imageMessage]
+            }
+            
+            presentations.append(createChatCellPresentation(message: chatMessage, imageMessage: imageMessages))
         }
         view?.displayMessages(with: presentations)
     }
     
-    private func createChatCellPresentation(message: ChatMessage, imageMessage: UIImage?) -> ChatCellPresentation {
+    private func createChatCellPresentation(message: ChatMessage, imageMessage: [String]?) -> ChatCellPresentation {
         let senderName: String
         let senderType: SenderType
         let senderImage: String
@@ -152,9 +174,12 @@ extension ChatViewModel: ChatViewModelProtocol {
             if chatParameters.chatType == .persona {
                 senderName = chatParameters.aiName
                 senderType = .persona
-            }else {
-                senderName = "chatGPT"
+            }else if chatParameters.chatType == .textGeneration {
+                senderName = chatParameters.aiName
                 senderType = .chatGPT
+            }else {
+                senderName = chatParameters.aiName
+                senderType = .imageGenerator
             }
             senderImage = chatParameters.aiImage ?? ""
         } else if message.role == "user" {
@@ -172,7 +197,7 @@ extension ChatViewModel: ChatViewModelProtocol {
                                                 senderName: senderName,
                                                 senderImage: senderImage,
                                                 message: message.content,
-                                                imageMessage: nil)
+                                                imageMessage: imageMessage)
     }
     
     private func displayGreetingMessage() {
@@ -183,7 +208,7 @@ extension ChatViewModel: ChatViewModelProtocol {
     }
     
     private func generateChatTitle() {
-        TextGenerationNetworkManager.shared.generateChatTitle(chatId: chatParameters.chatId, messages: messages) { [weak self] result in
+        TextGenerationManager.shared.generateChatTitle(chatId: chatParameters.chatId, messages: messages) { [weak self] result in
             switch result {
             case .success(let response):
                 var chatTitle = response.choices[0].message.content
@@ -198,5 +223,9 @@ extension ChatViewModel: ChatViewModelProtocol {
         }
         
         canGenerateChatTitle = false
+    }
+    
+    private func sendNetworkErrorMessage() {
+        displayMessage(message: ChatMessage(role: "assistant", content: "Network Error"), imageMessage: nil)
     }
 }

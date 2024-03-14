@@ -17,6 +17,7 @@ protocol HomeViewModelProtocol {
     func chatButtonClicked()
     func cameraButtonClicked()
     func historyButtonClicked()
+    func imageGenerationButtonClicked()
 }
 
 final class HomeViewModel {
@@ -61,5 +62,20 @@ extension HomeViewModel: HomeViewModelProtocol {
         let vc = ChatViewBuilder.make(chatParameters: chatParameters)
         ChatSaveManager.shared.createChat(chatParameters: chatParameters)
         view?.navigateTo(route: .cameraInput(vc))
+    }
+    
+    func imageGenerationButtonClicked() {
+        let chatParameters = ChatParameters(chatType: .imageGeneration,
+                                            aiName: "Image Generation",
+                                            aiImage: "chatgptlogo",
+                                            startPrompt: nil,
+                                            isStarred: false,
+                                            createdAt: Date.now,
+                                            chatId: UUID().uuidString,
+                                            greetingMessage: "Hi! What would you like me to draw?",
+                                            chatTitle: nil)
+        let vc = ChatViewBuilder.make(chatParameters: chatParameters)
+        ChatSaveManager.shared.createChat(chatParameters: chatParameters)
+        view?.navigateTo(route: .chat(vc))
     }
 }
