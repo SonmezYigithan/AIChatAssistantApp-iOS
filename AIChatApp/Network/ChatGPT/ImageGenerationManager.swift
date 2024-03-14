@@ -13,7 +13,7 @@ final class ImageGenerationManager {
     
     private func convertChatMessageToParameters(message: ChatMessage) -> Parameters {
         let parameters: Parameters = [
-            "model": "dall-e-3",
+            "model": "dall-e-2",
             "prompt": message.content,
             "n": 1,
             "size": "1024x1024"

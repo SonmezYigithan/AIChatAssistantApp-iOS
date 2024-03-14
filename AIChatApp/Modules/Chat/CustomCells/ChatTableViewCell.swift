@@ -54,6 +54,7 @@ class ChatTableViewCell: UITableViewCell {
     
     private let firstImageMessageImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.isHidden = true
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -61,6 +62,7 @@ class ChatTableViewCell: UITableViewCell {
     
     private let secondImageMessageImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.isHidden = true
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -71,13 +73,11 @@ class ChatTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.addSubview(senderNameLabel)
-        contentView.addSubview(messageLabel)
-        contentView.addSubview(senderImageView)
-        contentView.addSubview(firstImageMessageImageView)
-        contentView.addSubview(secondImageMessageImageView)
-        
-        setupConstraints()
+        addSubview(senderNameLabel)
+        addSubview(messageLabel)
+        addSubview(senderImageView)
+        addSubview(firstImageMessageImageView)
+        addSubview(secondImageMessageImageView)
     }
     
     override func prepareForReuse() {
@@ -95,10 +95,12 @@ class ChatTableViewCell: UITableViewCell {
                 if index == 0 {
                     if let url1 = URL(string: imageMessage[0]) {
                         firstImageMessageImageView.kf.setImage(with: url1)
+                        firstImageMessageImageView.isHidden = false
                     }
                 }else if index == 1 {
                     if let url2 = URL(string: imageMessage[1]) {
                         secondImageMessageImageView.kf.setImage(with: url2)
+                        secondImageMessageImageView.isHidden = false
                     }
                 }
                 index += 1
@@ -106,6 +108,7 @@ class ChatTableViewCell: UITableViewCell {
         }
         
         configureStyle(presentation: presentation)
+        setupConstraints()
     }
     
     private func configureStyle(presentation: ChatCellPresentation) {
@@ -126,8 +129,7 @@ class ChatTableViewCell: UITableViewCell {
     private func setupConstraints() {
         senderImageView.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().offset(15)
-            make.width.equalTo(30)
-            make.height.equalTo(30)
+            make.width.height.equalTo(30)
         }
         
         senderNameLabel.snp.makeConstraints { make in
@@ -143,16 +145,25 @@ class ChatTableViewCell: UITableViewCell {
             make.trailing.equalToSuperview().offset(-15)
         }
         
-        firstImageMessageImageView.snp.makeConstraints { make in
-            make.top.equalTo(messageLabel.snp.bottom).offset(5)
-            make.leading.equalTo(senderImageView.snp.trailing).offset(15)
-            make.height.width.equalTo(150)
-        }
-        
-        secondImageMessageImageView.snp.makeConstraints { make in
-            make.top.equalTo(messageLabel.snp.bottom).offset(5)
-            make.leading.equalTo(firstImageMessageImageView.snp.trailing).offset(5)
-            make.height.width.equalTo(150)
+        if !firstImageMessageImageView.isHidden {
+            messageLabel.snp.remakeConstraints { make in
+                make.top.equalTo(senderNameLabel.snp.bottom).offset(5)
+                make.leading.equalTo(senderImageView.snp.trailing).offset(15)
+                make.trailing.equalToSuperview().offset(-15)
+            }
+            
+            firstImageMessageImageView.snp.makeConstraints { make in
+                make.top.equalTo(messageLabel.snp.bottom).offset(5)
+                make.leading.equalTo(senderImageView.snp.trailing).offset(15)
+                make.height.width.equalTo(150)
+                make.bottom.equalToSuperview().offset(-15)
+            }
+            
+            secondImageMessageImageView.snp.makeConstraints { make in
+                make.top.equalTo(messageLabel.snp.bottom).offset(5)
+                make.leading.equalTo(firstImageMessageImageView.snp.trailing).offset(5)
+                make.height.width.equalTo(150)
+            }
         }
     }
 }
