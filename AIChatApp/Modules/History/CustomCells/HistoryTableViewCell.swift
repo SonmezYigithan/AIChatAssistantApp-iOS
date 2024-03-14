@@ -62,12 +62,8 @@ class HistoryTableViewCell: UITableViewCell {
     }
     
     func configure(with presentation: ChatHistoryCellPresentation) {
-        if presentation.chatType == .imageGeneration {
-            // TODO: Image Generation Logo
-        }else {
-            if let image = presentation.image {
-                self.aiImage.image = UIImage(named: image)
-            }
+        if let image = presentation.image {
+            self.aiImage.image = UIImage(named: image)
         }
         
         aiName.text = presentation.aiName
