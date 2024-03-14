@@ -80,6 +80,7 @@ class MessageBarView: UIView {
         textView.delegate = self
         
         sendButton.addTarget(self, action: #selector(sendButtonClicked), for: .touchUpInside)
+        cameraButton.addTarget(self, action: #selector(cameraButtonClicked), for: .touchUpInside)
         
         setupConstraints()
     }
@@ -88,6 +89,14 @@ class MessageBarView: UIView {
         guard let message = textView.text else { return }
         chatView?.sendButtonClicked(message: message)
         textView.text = ""
+    }
+    
+    @objc private func cameraButtonClicked() {
+        chatView?.navigateToCameraInputView()
+    }
+    
+    func updateTextView(message: String) {
+        textView.text = message
     }
     
     private func setupConstraints() {

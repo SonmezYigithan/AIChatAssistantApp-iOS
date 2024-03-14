@@ -9,7 +9,7 @@ import Foundation
 
 enum HomeViewRoutes {
     case chat(ChatView)
-    case cameraInput
+    case cameraInput(ChatView)
     case history(HistoryView)
 }
 
@@ -49,6 +49,17 @@ extension HomeViewModel: HomeViewModelProtocol {
     }
     
     func cameraButtonClicked() {
-        view?.navigateTo(route: .cameraInput)
+        let chatParameters = ChatParameters(chatType: .textGeneration,
+                                            aiName: "ChatGPT",
+                                            aiImage: "chatgptlogo",
+                                            startPrompt: nil,
+                                            isStarred: false,
+                                            createdAt: Date.now,
+                                            chatId: UUID().uuidString,
+                                            greetingMessage: "Hi! how can I help you?",
+                                            chatTitle: nil)
+        let vc = ChatViewBuilder.make(chatParameters: chatParameters)
+        ChatSaveManager.shared.createChat(chatParameters: chatParameters)
+        view?.navigateTo(route: .cameraInput(vc))
     }
 }

@@ -11,6 +11,7 @@ protocol ChatViewProtocol: AnyObject {
     func displayMessages(with presentation: [ChatCellPresentation])
     func displayMessage(message: ChatCellPresentation)
     func sendButtonClicked(message: String)
+    func navigateToCameraInputView()
 }
 
 final class ChatView: UIViewController {
@@ -123,5 +124,16 @@ extension ChatView: ChatViewProtocol {
     
     func sendButtonClicked(message: String) {
         viewModel?.sendMessage(message: message)
+    }
+    
+    func navigateToCameraInputView() {
+        let vc = CameraInputViewBuilder.make(delegate: self)
+        show(vc, sender: self)
+    }
+}
+
+extension ChatView: CameraInputDelegate {
+    func didTextRecognitionFinish(message: String) {
+        messageBarView.updateTextView(message: message)
     }
 }

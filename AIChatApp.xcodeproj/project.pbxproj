@@ -37,12 +37,14 @@
 		C17EA6912BA1464D00ADFF91 /* ChatMessageEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17EA68D2BA1464D00ADFF91 /* ChatMessageEntity+CoreDataProperties.swift */; };
 		C17EA6922BA1464D00ADFF91 /* ChatEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17EA68E2BA1464D00ADFF91 /* ChatEntity+CoreDataClass.swift */; };
 		C17EA6932BA1464D00ADFF91 /* ChatEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17EA68F2BA1464D00ADFF91 /* ChatEntity+CoreDataProperties.swift */; };
+		C1D88BC32BA31DA3006C3218 /* CameraInputViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D88BC22BA31DA3006C3218 /* CameraInputViewBuilder.swift */; };
 		C1DC4BC62B9F1D8200733BF7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC4BC52B9F1D8200733BF7 /* NetworkManager.swift */; };
 		C1DC4BC82B9F1DA000733BF7 /* OpenAINetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC4BC72B9F1DA000733BF7 /* OpenAINetworkHelper.swift */; };
 		C1DC4BCA2B9F1DBC00733BF7 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC4BC92B9F1DBC00733BF7 /* APIKeys.swift */; };
 		C1DC4BCD2B9F23D500733BF7 /* TextGenerationNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC4BCC2B9F23D500733BF7 /* TextGenerationNetworkManager.swift */; };
 		C1DC4BCF2B9F2F4B00733BF7 /* API-Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1DC4BCE2B9F2F4B00733BF7 /* API-Keys.plist */; };
 		C1DEE4482BA1E6A9005D89BB /* ButtonWithImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DEE4472BA1E6A9005D89BB /* ButtonWithImageView.swift */; };
+		C1DEE44B2BA23B8A005D89BB /* CameraInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DEE44A2BA23B8A005D89BB /* CameraInputView.swift */; };
 		C1E8DBCB2B9DEBB300DF8855 /* StoreCollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8DBCA2B9DEBB300DF8855 /* StoreCollectionViewHeader.swift */; };
 		C1E8DBCD2B9DF29C00DF8855 /* StoreTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8DBCC2B9DF29C00DF8855 /* StoreTableViewHeader.swift */; };
 		C1E8DBCF2B9E1A9500DF8855 /* ChatViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8DBCE2B9E1A9500DF8855 /* ChatViewBuilder.swift */; };
@@ -50,6 +52,7 @@
 		C1E8DBD52B9E254F00DF8855 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8DBD42B9E254F00DF8855 /* ChatTableViewCell.swift */; };
 		C1E8DBDA2B9E39C600DF8855 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8DBD92B9E39C600DF8855 /* ChatMessage.swift */; };
 		C1E8DBDC2B9E3A6800DF8855 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8DBDB2B9E3A6800DF8855 /* ChatViewModel.swift */; };
+		C1ECCC542BA2911D007EA571 /* CameraInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ECCC532BA2911D007EA571 /* CameraInputViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -96,12 +99,14 @@
 		C17EA68D2BA1464D00ADFF91 /* ChatMessageEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatMessageEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C17EA68E2BA1464D00ADFF91 /* ChatEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C17EA68F2BA1464D00ADFF91 /* ChatEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C1D88BC22BA31DA3006C3218 /* CameraInputViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraInputViewBuilder.swift; sourceTree = "<group>"; };
 		C1DC4BC52B9F1D8200733BF7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C1DC4BC72B9F1DA000733BF7 /* OpenAINetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAINetworkHelper.swift; sourceTree = "<group>"; };
 		C1DC4BC92B9F1DBC00733BF7 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		C1DC4BCC2B9F23D500733BF7 /* TextGenerationNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextGenerationNetworkManager.swift; sourceTree = "<group>"; };
 		C1DC4BCE2B9F2F4B00733BF7 /* API-Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "API-Keys.plist"; sourceTree = "<group>"; };
 		C1DEE4472BA1E6A9005D89BB /* ButtonWithImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithImageView.swift; sourceTree = "<group>"; };
+		C1DEE44A2BA23B8A005D89BB /* CameraInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraInputView.swift; sourceTree = "<group>"; };
 		C1E8DBCA2B9DEBB300DF8855 /* StoreCollectionViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewHeader.swift; sourceTree = "<group>"; };
 		C1E8DBCC2B9DF29C00DF8855 /* StoreTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTableViewHeader.swift; sourceTree = "<group>"; };
 		C1E8DBCE2B9E1A9500DF8855 /* ChatViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewBuilder.swift; sourceTree = "<group>"; };
@@ -109,6 +114,7 @@
 		C1E8DBD42B9E254F00DF8855 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		C1E8DBD92B9E39C600DF8855 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		C1E8DBDB2B9E3A6800DF8855 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		C1ECCC532BA2911D007EA571 /* CameraInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraInputViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +165,7 @@
 		C120B6B62B9B5CA800422CE5 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				C1DEE4492BA23B55005D89BB /* CameraInput */,
 				C17EA66C2BA12EA600ADFF91 /* History */,
 				C120B6CE2B9B72F600422CE5 /* Chat */,
 				C120B6B72B9B5CAC00422CE5 /* Home */,
@@ -313,6 +320,16 @@
 			path = ChatGPT;
 			sourceTree = "<group>";
 		};
+		C1DEE4492BA23B55005D89BB /* CameraInput */ = {
+			isa = PBXGroup;
+			children = (
+				C1DEE44A2BA23B8A005D89BB /* CameraInputView.swift */,
+				C1ECCC532BA2911D007EA571 /* CameraInputViewModel.swift */,
+				C1D88BC22BA31DA3006C3218 /* CameraInputViewBuilder.swift */,
+			);
+			path = CameraInput;
+			sourceTree = "<group>";
+		};
 		C1E8DBC92B9DEB7400DF8855 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,6 +464,8 @@
 				C1DC4BC62B9F1D8200733BF7 /* NetworkManager.swift in Sources */,
 				C13AD16E2B9F8CB3009A5E01 /* Persona.swift in Sources */,
 				C1DC4BCA2B9F1DBC00733BF7 /* APIKeys.swift in Sources */,
+				C1ECCC542BA2911D007EA571 /* CameraInputViewModel.swift in Sources */,
+				C1DEE44B2BA23B8A005D89BB /* CameraInputView.swift in Sources */,
 				C17EA6922BA1464D00ADFF91 /* ChatEntity+CoreDataClass.swift in Sources */,
 				C1E8DBCF2B9E1A9500DF8855 /* ChatViewBuilder.swift in Sources */,
 				C17EA6632BA126A700ADFF91 /* ChatSaveManager.swift in Sources */,
@@ -466,6 +485,7 @@
 				C17EA6902BA1464D00ADFF91 /* ChatMessageEntity+CoreDataClass.swift in Sources */,
 				C1E8DBCD2B9DF29C00DF8855 /* StoreTableViewHeader.swift in Sources */,
 				C13AD1732BA09882009A5E01 /* MoreAppsTableViewCell.swift in Sources */,
+				C1D88BC32BA31DA3006C3218 /* CameraInputViewBuilder.swift in Sources */,
 				C120B6D52B9D112400422CE5 /* StoreViewModel.swift in Sources */,
 				C1E8DBDA2B9E39C600DF8855 /* ChatMessage.swift in Sources */,
 				C120B6C52B9B60FB00422CE5 /* TabBar.swift in Sources */,
@@ -623,6 +643,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AIChatApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "AI Chat App";
+				INFOPLIST_KEY_NSCameraUsageDescription = "You can take photos to convert image to text";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the chat message. Audio recordings are discarded after transcription.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "You can transcribe chat text input";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -655,6 +676,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AIChatApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "AI Chat App";
+				INFOPLIST_KEY_NSCameraUsageDescription = "You can take photos to convert image to text";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the chat message. Audio recordings are discarded after transcription.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "You can transcribe chat text input";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

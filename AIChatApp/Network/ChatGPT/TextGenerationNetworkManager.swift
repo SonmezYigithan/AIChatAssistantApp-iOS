@@ -68,7 +68,7 @@ final class TextGenerationNetworkManager {
     func generateChatTitle(chatId: String, messages: [ChatMessage], completion: @escaping (Result<ChatGPTResponse, Error>) -> ()) {
         let urlEndpoint = OpenAINetworkHelper.shared.baseURL + "chat/completions"
         
-        let prompt = ChatMessage(role: "user", content: "generate a chat title for this conversation")
+        let prompt = ChatMessage(role: "user", content: "generete me a chat title for this conversation. don't include anything in response. Only include message in quotation marks")
         var chatMessages = messages
         chatMessages.append(prompt)
         let parameters = convertChatMessagesToParameters(messages: chatMessages)

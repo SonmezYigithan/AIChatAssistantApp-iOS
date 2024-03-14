@@ -227,8 +227,9 @@ extension HomeView: HomeViewProtocol {
         switch route {
         case .chat(let vc):
             show(vc, sender: self)
-        case .cameraInput:
-            print("navigate to Camera Input") // TODO: Camera Input
+        case .cameraInput(let vc):
+            show(vc, sender: self)
+            vc.navigateToCameraInputView()
         case .history(let vc):
             show(vc, sender: self)
         }
