@@ -93,7 +93,7 @@ final class HomeView: UIViewController {
         imageBackground.layer.cornerRadius = 15
         imageBackground.layer.masksToBounds = true
         
-        image.image = UIImage(systemName: "rectangle.dashed")
+        image.image = UIImage(named: "imagegenerationhomeimage")
         image.tintColor = .green
         image.contentMode = .scaleAspectFit
         image.backgroundColor = .white
@@ -223,6 +223,10 @@ final class HomeView: UIViewController {
         
         label.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 10))
+        }
+        
+        separator.snp.makeConstraints { make in
+            make.width.equalToSuperview()
         }
     }
 }

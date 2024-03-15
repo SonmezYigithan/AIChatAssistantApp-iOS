@@ -11,6 +11,8 @@ final class SeparatorLineHomeView: UIView {
     let orLabel: UILabel = {
         let label = UILabel()
         label.text = "or"
+        label.font = .systemFont(ofSize: 13)
+        label.textColor = .customGrayText
         label.textAlignment = .center
         return label
     }()
@@ -38,8 +40,8 @@ final class SeparatorLineHomeView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        applyGradient(on: leftLine, startPoint: CGPoint(x: 0, y: 0.5), endPoint: CGPoint(x: 1, y: 0.5))
-        applyGradient(on: rightLine, startPoint: CGPoint(x: 1, y: 0.5), endPoint: CGPoint(x: 0, y: 0.5))
+        applyGradient(on: leftLine, startPoint: CGPoint(x: 0, y: 0.5), endPoint: CGPoint(x: 1, y: 1))
+        applyGradient(on: rightLine, startPoint: CGPoint(x: 1, y: 0.5), endPoint: CGPoint(x: 0, y: 0))
     }
     
     required init?(coder: NSCoder) {
