@@ -59,6 +59,7 @@ extension ChatViewModel: ChatViewModelProtocol {
         }
         
         displayMessage(message: userMessage, imageMessage: nil)
+        saveMessage(message: userMessage, imageMessage: nil)
         
         if chatParameters.chatType == .imageGeneration {
             generateImage()
