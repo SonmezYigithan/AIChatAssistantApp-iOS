@@ -12,6 +12,9 @@ protocol ChatViewProtocol: AnyObject {
     func displayMessage(message: ChatCellPresentation)
     func sendButtonClicked(message: String)
     func navigateToCameraInputView()
+    func updateCell(at index: Int, presentation: ChatCellPresentation)
+    func disableSendButton()
+    func enableSendButton()
 }
 
 final class ChatView: UIViewController {
@@ -129,6 +132,20 @@ extension ChatView: ChatViewProtocol {
     func navigateToCameraInputView() {
         let vc = CameraInputViewBuilder.make(delegate: self)
         show(vc, sender: self)
+    }
+    
+    func updateCell(at index: Int, presentation: ChatCellPresentation) {
+        let indexPath = IndexPath(row: index, section: 0)
+        guard let cell = tableView.cellForRow(at: indexPath) as? ChatTableViewCell else { return }
+        cell.configure(with: presentation)
+    }
+    
+    func disableSendButton() {
+        messageBarView.disableSendButton()
+    }
+    
+    func enableSendButton() {
+        messageBarView.enableSendButton()
     }
 }
 

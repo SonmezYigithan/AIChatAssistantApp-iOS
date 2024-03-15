@@ -140,6 +140,7 @@ class CustomSegmentedControl: UIView {
         line.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-16)
             make.width.equalToSuperview()
+            make.leading.equalToSuperview()
             make.height.equalTo(0.5)
         }
     }

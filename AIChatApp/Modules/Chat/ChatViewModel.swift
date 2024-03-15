@@ -90,6 +90,7 @@ extension ChatViewModel: ChatViewModelProtocol {
                     self?.messages.append(message)
                     print("ChatGPT: \(message.content)")
                     self?.displayMessage(message: message, imageMessage: nil)
+                    self?.saveMessage(message: message, imageMessage: nil)
                 case .failure(let error):
                     print(error)
                     self?.sendNetworkErrorMessage()
@@ -103,6 +104,7 @@ extension ChatViewModel: ChatViewModelProtocol {
                     self?.messages.append(message)
                     print("ChatGPT: \(message.content)")
                     self?.displayMessage(message: message, imageMessage: nil)
+                    self?.saveMessage(message: message, imageMessage: nil)
                 case .failure(let error):
                     print(error)
                     self?.sendNetworkErrorMessage()
@@ -113,19 +115,31 @@ extension ChatViewModel: ChatViewModelProtocol {
     
     private func generateImage() {
         if let message = messages.last {
+            // display empty image chat message with loading circle
+            let chatMessage = ChatMessage(role: "assistant", content: "Creating image with prompt: \(message.content)")
+            displayMessage(message: chatMessage, imageMessage: [""])
+            view?.disableSendButton()
             ImageGenerationManager.shared.generateImageFromMessage(message: message) { [weak self] result in
+                guard let self = self else { return }
                 switch result {
                 case .success(let response):
-                    print(response.data?[0].url ?? "")
                     guard let imageData = response.data?[0].url else {
-                        self?.sendNetworkErrorMessage()
+                        self.view?.enableSendButton()
+                        self.sendNetworkErrorMessage()
                         return
                     }
+                    print("Created Image URL: \(imageData)")
                     let responseData: [String] = [imageData]
-                    self?.displayMessage(message: ChatMessage(role: "assistant", content: ""), imageMessage: responseData)
+                    
+                    // Update Chat Message
+                    let presentation = self.createChatCellPresentation(message: chatMessage, imageMessage: responseData)
+                    self.view?.updateCell(at: messages.count, presentation: presentation)
+                    self.saveMessage(message: message, imageMessage: responseData)
+                    self.view?.enableSendButton()
                 case .failure(let error):
                     print(error)
-                    self?.sendNetworkErrorMessage()
+                    self.sendNetworkErrorMessage()
+                    self.view?.enableSendButton()
                 }
             }
         }
@@ -133,8 +147,11 @@ extension ChatViewModel: ChatViewModelProtocol {
     
     private func displayMessage(message: ChatMessage, imageMessage: [String]?) {
         let presentation = createChatCellPresentation(message: message, imageMessage: imageMessage)
+        view?.displayMessage(message: presentation)
+    }
+    
+    private func saveMessage(message: ChatMessage, imageMessage: [String]?) {
         var isSenderUser: Bool
-        
         if message.role == "assistant" {
             isSenderUser = false
         } else if message.role == "user" {
@@ -144,8 +161,6 @@ extension ChatViewModel: ChatViewModelProtocol {
         }
         
         ChatSaveManager.shared.saveMessage(chatId: chatParameters.chatId, textMessage: message.content, imageMessage: imageMessage, isSenderUser: isSenderUser)
-        
-        view?.displayMessage(message: presentation)
     }
     
     private func displayAllLoadedMessages(chatMessages: [ChatMessageEntity]) {
@@ -205,6 +220,7 @@ extension ChatViewModel: ChatViewModelProtocol {
         let greetingMessage = ChatMessage(role: "assistant", content: greeting)
         messages.append(greetingMessage)
         displayMessage(message: greetingMessage, imageMessage: nil)
+        saveMessage(message: greetingMessage, imageMessage: nil)
     }
     
     private func generateChatTitle() {

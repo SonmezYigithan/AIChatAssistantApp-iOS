@@ -10,6 +10,8 @@ import UIKit
 class MessageBarView: UIView {
     weak var chatView: ChatViewProtocol?
     
+    var isWaitingResponse = false
+    
     private let micButton: UIButton = {
         let button = UIButton()
         let image = UIImage(systemName: "mic.fill")
@@ -85,6 +87,22 @@ class MessageBarView: UIView {
         setupConstraints()
     }
     
+    func disableSendButton() {
+        isWaitingResponse = true
+        sendButton.isEnabled = false
+    }
+    
+    func enableSendButton() {
+        isWaitingResponse = false
+        if !textView.text.isEmpty {
+            sendButton.isEnabled = true
+        }
+    }
+    
+    func updateTextView(message: String) {
+        textView.text = message
+    }
+    
     @objc private func sendButtonClicked() {
         guard let message = textView.text else { return }
         chatView?.sendButtonClicked(message: message)
@@ -93,10 +111,6 @@ class MessageBarView: UIView {
     
     @objc private func cameraButtonClicked() {
         chatView?.navigateToCameraInputView()
-    }
-    
-    func updateTextView(message: String) {
-        textView.text = message
     }
     
     private func setupConstraints() {
@@ -127,6 +141,8 @@ class MessageBarView: UIView {
 
 extension MessageBarView: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
+        if isWaitingResponse { return }
+        
         if textView.text.isEmpty {
             sendButton.isEnabled = false
         }else {
