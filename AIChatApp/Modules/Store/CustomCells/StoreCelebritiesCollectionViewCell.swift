@@ -11,7 +11,7 @@ final class StoreCelebritiesCollectionViewCell: UICollectionViewCell {
     static let identifier = "StoreCelebritiesCollectionViewCell"
     
     weak var viewModel: StoreViewModelProtocol?
-    private var celebrities = [PersonaPresenter]()
+    private var celebrities = [PersonaPresentation]()
     var collectionViewSectionIndex = 0
     
     private let tableView: UITableView = {
@@ -40,7 +40,7 @@ final class StoreCelebritiesCollectionViewCell: UICollectionViewCell {
         setupConstraints()
     }
     
-    func configure(with celebrityPersonas: [PersonaPresenter]) {
+    func configure(with celebrityPersonas: [PersonaPresentation]) {
         celebrities = celebrityPersonas
     }
     

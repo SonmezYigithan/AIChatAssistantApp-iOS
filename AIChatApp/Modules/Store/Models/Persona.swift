@@ -15,7 +15,7 @@ struct Persona {
     let greetingMessage: String
 }
 
-struct PersonaPresenter {
+struct PersonaPresentation {
     let name: String
     let description: String
     let image: String?

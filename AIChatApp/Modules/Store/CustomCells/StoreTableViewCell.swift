@@ -54,7 +54,7 @@ final class StoreTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with persona: PersonaPresenter) {
+    func configure(with persona: PersonaPresentation) {
         aiNameLabel.text = persona.name
         aiDescriptionLabel.text = persona.description
         

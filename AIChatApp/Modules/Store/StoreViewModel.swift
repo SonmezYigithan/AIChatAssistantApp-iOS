@@ -27,12 +27,12 @@ final class StoreViewModel {
 extension StoreViewModel: StoreViewModelProtocol {
     func viewDidLoad() {
         celebrities = PersonaManager.shared.getAllCelebrities()
-        let celebrityPresenter = celebrities.map { PersonaPresenter(name: $0.name, description: $0.description, image: $0.image) }
-        view?.showCelebrities(personas: celebrityPresenter)
+        let celebrityPresentation = celebrities.map { PersonaPresentation(name: $0.name, description: $0.description, image: $0.image) }
+        view?.showCelebrities(personas: celebrityPresentation)
         
         experts = PersonaManager.shared.getAllExperts()
-        let expertPresenter = experts.map { PersonaPresenter(name: $0.name, description: $0.description, image: $0.image) }
-        view?.showExperts(personas: expertPresenter)
+        let expertPresentation = experts.map { PersonaPresentation(name: $0.name, description: $0.description, image: $0.image) }
+        view?.showExperts(personas: expertPresentation)
     }
     
     func selectExpert(at index: Int) {

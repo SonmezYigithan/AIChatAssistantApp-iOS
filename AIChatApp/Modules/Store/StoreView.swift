@@ -8,8 +8,8 @@
 import UIKit
 
 protocol StoreViewProtocol: AnyObject {
-    func showCelebrities(personas: [PersonaPresenter])
-    func showExperts(personas: [PersonaPresenter])
+    func showCelebrities(personas: [PersonaPresentation])
+    func showExperts(personas: [PersonaPresentation])
     func navigateToChatView(vc: UIViewController)
 }
 
@@ -18,8 +18,8 @@ final class StoreView: UIViewController {
     private lazy var viewModel: StoreViewModelProtocol = StoreViewModel(view: self)
     private let collectionViewHeader = StoreCollectionViewHeader()
     
-    private var celebrities = [[PersonaPresenter]]()
-    private var experts = [PersonaPresenter]()
+    private var celebrities = [[PersonaPresentation]]()
+    private var experts = [PersonaPresentation]()
     
     private let collectionView: UICollectionView = {
         let flow = UICollectionViewFlowLayout()
@@ -41,6 +41,7 @@ final class StoreView: UIViewController {
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
     
@@ -177,7 +178,7 @@ extension StoreView: StoreViewProtocol {
         show(vc, sender: self)
     }
     
-    func showCelebrities(personas: [PersonaPresenter]) {
+    func showCelebrities(personas: [PersonaPresentation]) {
         // split persona array into 3 to show only 3 elements at every section
         let splitSize = personas.count / 3
         let splitPersonas = stride(from: 0, to: personas.count, by: splitSize).map {
@@ -187,7 +188,7 @@ extension StoreView: StoreViewProtocol {
         collectionView.reloadData()
     }
     
-    func showExperts(personas: [PersonaPresenter]) {
+    func showExperts(personas: [PersonaPresentation]) {
         experts = personas
         tableView.reloadData()
     }
