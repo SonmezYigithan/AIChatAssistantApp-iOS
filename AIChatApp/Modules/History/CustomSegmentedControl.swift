@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol CustomSegmentedControlDelegate {
+protocol CustomSegmentedControlDelegate: AnyObject {
     func selectedSegment(index: Int)
 }
 
@@ -19,7 +19,7 @@ class CustomSegmentedControl: UIView {
         static let underlineViewHeight: CGFloat = 2
     }
     
-    var delegate: CustomSegmentedControlDelegate?
+    weak var delegate: CustomSegmentedControlDelegate?
     
     private let line: UIView = {
         let view = UIView()

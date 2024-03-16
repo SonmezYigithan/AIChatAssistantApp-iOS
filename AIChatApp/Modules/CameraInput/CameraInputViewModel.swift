@@ -22,7 +22,7 @@ protocol CameraInputDelegate: AnyObject {
 
 class CameraInputViewModel: NSObject {
     weak var view: CameraInputViewProtocol?
-    var delegate: CameraInputDelegate?
+    weak var delegate: CameraInputDelegate?
     
     var session: AVCaptureSession?
     var output = AVCapturePhotoOutput()
