@@ -101,6 +101,9 @@ class MessageBarView: UIView {
     
     func updateTextView(message: String) {
         textView.text = message
+        if !textView.text.isEmpty {
+            sendButton.isEnabled = true
+        }
     }
     
     @objc private func sendButtonClicked() {

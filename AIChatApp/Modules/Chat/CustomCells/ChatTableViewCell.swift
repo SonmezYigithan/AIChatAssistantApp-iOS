@@ -70,14 +70,14 @@ class ChatTableViewCell: UITableViewCell {
     
     private let firstActivityIndicator: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView()
-        spinner.style = .large
+//        spinner.style = .large
         spinner.isHidden = true
         return spinner
     }()
     
     private let secondActivityIndicator: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView()
-        spinner.style = .large
+//        spinner.style = .large
         spinner.isHidden = true
         return spinner
     }()
@@ -110,6 +110,11 @@ class ChatTableViewCell: UITableViewCell {
         messageLabel.text = presentation.message
         self.senderType = presentation.senderType
         
+        configureImage(presentation: presentation)
+        configureStyle(presentation: presentation)
+    }
+    
+    private func configureImage(presentation: ChatCellPresentation) {
         if let imageMessage = presentation.imageMessage, imageMessage.count > 0 {
             remakeConstraintsForImageMessage()
             // image not yet loaded
@@ -118,17 +123,19 @@ class ChatTableViewCell: UITableViewCell {
                 firstActivityIndicator.isHidden = false
                 firstImageMessageImageView.backgroundColor = .lightGray
                 firstActivityIndicator.startAnimating()
-            }else {
+            } else {
                 var index = 0
                 for _ in imageMessage {
                     if index == 0 {
                         if let url1 = URL(string: imageMessage[0]) {
+                            firstImageMessageImageView.kf.indicatorType = .activity
                             firstImageMessageImageView.kf.setImage(with: url1)
                             firstImageMessageImageView.isHidden = false
                             firstActivityIndicator.stopAnimating()
                         }
-                    }else if index == 1 {
+                    } else if index == 1 {
                         if let url2 = URL(string: imageMessage[1]) {
+                            secondImageMessageImageView.kf.indicatorType = .activity
                             secondImageMessageImageView.kf.setImage(with: url2)
                             secondImageMessageImageView.isHidden = false
                             firstActivityIndicator.stopAnimating()
@@ -138,8 +145,6 @@ class ChatTableViewCell: UITableViewCell {
                 }
             }
         }
-        
-        configureStyle(presentation: presentation)
     }
     
     private func configureStyle(presentation: ChatCellPresentation) {

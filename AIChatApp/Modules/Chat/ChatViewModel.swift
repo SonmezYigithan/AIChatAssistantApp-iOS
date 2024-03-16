@@ -117,8 +117,9 @@ extension ChatViewModel: ChatViewModelProtocol {
     private func generateImage() {
         if let message = messages.last {
             // display empty image chat message with loading circle
-            let chatMessage = ChatMessage(role: "assistant", content: "Creating image with prompt: \(message.content)")
-            displayMessage(message: chatMessage, imageMessage: [""])
+            let emptyMessage = ChatMessage(role: "assistant", content: "Creating image with prompt: \(message.content)")
+            messages.append(emptyMessage)
+            displayMessage(message: emptyMessage, imageMessage: [""])
             view?.disableSendButton()
             ImageGenerationManager.shared.generateImageFromMessage(message: message) { [weak self] result in
                 guard let self = self else { return }
@@ -133,8 +134,8 @@ extension ChatViewModel: ChatViewModelProtocol {
                     let responseData: [String] = [imageData]
                     
                     // Update Chat Message
-                    let presentation = self.createChatCellPresentation(message: chatMessage, imageMessage: responseData)
-                    self.view?.updateCell(at: messages.count, presentation: presentation)
+                    let presentation = self.createChatCellPresentation(message: emptyMessage, imageMessage: responseData)
+                    self.view?.updateCell(at: messages.count-1, presentation: presentation)
                     self.saveMessage(message: message, imageMessage: responseData)
                     self.view?.enableSendButton()
                 case .failure(let error):
