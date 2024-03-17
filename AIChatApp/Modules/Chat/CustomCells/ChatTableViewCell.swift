@@ -33,6 +33,7 @@ class ChatTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.numberOfLines = 1
         return label
     }()
     
@@ -47,7 +48,7 @@ class ChatTableViewCell: UITableViewCell {
     let senderImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.tintColor = .gray
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -171,14 +172,14 @@ class ChatTableViewCell: UITableViewCell {
         senderNameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(15)
             make.leading.equalTo(senderImageView.snp.trailing).offset(15)
-            make.trailing.equalToSuperview().offset(-10)
+            make.trailing.equalToSuperview().offset(-15).priority(999)
         }
         
         messageLabel.snp.makeConstraints { make in
             make.top.equalTo(senderNameLabel.snp.bottom).offset(5)
             make.bottom.equalToSuperview().offset(-15)
             make.leading.equalTo(senderImageView.snp.trailing).offset(15)
-            make.trailing.equalToSuperview().offset(-15)
+            make.trailing.equalToSuperview().offset(-15).priority(999)
         }
         
         firstActivityIndicator.snp.makeConstraints { make in

@@ -76,7 +76,8 @@ final class ChatView: UIViewController {
     
     private func setupConstraints() {
         tableView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
+            make.top.leading.equalToSuperview()
+            make.width.equalToSuperview()
             make.bottom.equalTo(messageBarView.snp.top)
         }
         
