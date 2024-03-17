@@ -30,6 +30,8 @@ final class StoreView: UIViewController {
         return view
     }()
     
+    private let limitedTimeOfferView = LimitedTimeOfferView()
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.showsVerticalScrollIndicator = false
@@ -75,6 +77,7 @@ final class StoreView: UIViewController {
         scrollView.addSubview(stackView)
         stackView.addArrangedSubview(collectionViewHeader)
         stackView.addArrangedSubview(collectionView)
+        stackView.addArrangedSubview(limitedTimeOfferView)
         stackView.addArrangedSubview(tableView)
         view.addSubview(spinner)
         
@@ -115,6 +118,11 @@ final class StoreView: UIViewController {
         
         tableView.snp.makeConstraints { make in
             make.height.equalTo(0)
+            make.width.equalToSuperview()
+        }
+        
+        limitedTimeOfferView.snp.makeConstraints { make in
+            make.height.equalTo(280)
             make.width.equalToSuperview()
         }
         
