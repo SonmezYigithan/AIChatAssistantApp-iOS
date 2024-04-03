@@ -19,9 +19,6 @@ https://github.com/SonmezYigithan/AIChatApp-iOS/assets/30535277/3c9d61e4-39ec-40
 
 ## Screenshots
 
-<img src="Screenshots/HomePage.png" width=200 height=433> <img src="Screenshots/GameDetailsDark.png" width=200 height=433>
-<img src="Screenshots/ChatPage.png" width=200 height=433> <img src="Screenshots/SearchDark.png" width=200 height=433>
-<img src="Screenshots/ImageGenerationChat.png" width=200 height=433> <img src="Screenshots/ListDetailsDark.png" width=200 height=433>
-<img src="Screenshots/ChatHistory.png" width=200 height=433> <img src="Screenshots/AddToList.png" width=200 height=433>
-<img src="Screenshots/PersonaPage.png" width=200 height=433> <img src="Screenshots/AddToList.png" width=200 height=433>
-<img src="Screenshots/SettingsPage.png" width=200 height=433> <img src="Screenshots/AddToList.png" width=200 height=433>
+<img src="Screenshots/HomePage.png" width=200 height=433> <img src="Screenshots/ChatPage.png" width=200 height=433>
+<img src="Screenshots/ImageGenerationChat.png" width=200 height=433> <img src="Screenshots/ChatHistory.png" width=200 height=433>
+<img src="Screenshots/PersonaPage.png" width=200 height=433> <img src="Screenshots/SettingsPage.png" width=200 height=433>
