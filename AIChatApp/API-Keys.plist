@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>OPENAI_AUTHORIZATION</key>
-	<string></string>
+	<string>Insert Your Key Here</string>
 </dict>
 </plist>
