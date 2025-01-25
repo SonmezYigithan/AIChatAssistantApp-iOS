@@ -138,6 +138,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		528A72612D453282006D74B4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C120B6B02B9B5C9C00422CE5 /* Info.plist */,
+				C120B69F2B9B5C9A00422CE5 /* AppDelegate.swift */,
+				C120B6A12B9B5C9A00422CE5 /* SceneDelegate.swift */,
+				C120B6AD2B9B5C9C00422CE5 /* LaunchScreen.storyboard */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		528A72622D453307006D74B4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C120B6AB2B9B5C9C00422CE5 /* Assets.xcassets */,
+				C1DC4BCE2B9F2F4B00733BF7 /* API-Keys.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		528A72632D4533A7006D74B4 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				528A72642D4533AC006D74B4 /* Extensions */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		528A72642D4533AC006D74B4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C120B6932B9B5C9A00422CE5 = {
 			isa = PBXGroup;
 			children = (
@@ -157,15 +192,12 @@
 		C120B69E2B9B5C9A00422CE5 /* AIChatApp */ = {
 			isa = PBXGroup;
 			children = (
-				C17EA6602BA1267700ADFF91 /* CoreData */,
+				528A72632D4533A7006D74B4 /* Core */,
+				528A72612D453282006D74B4 /* App */,
+				C17EA6602BA1267700ADFF91 /* Storage */,
 				C1E8DBDD2B9E3C6300DF8855 /* Network */,
+				528A72622D453307006D74B4 /* Resources */,
 				C120B6B62B9B5CA800422CE5 /* Modules */,
-				C120B69F2B9B5C9A00422CE5 /* AppDelegate.swift */,
-				C120B6A12B9B5C9A00422CE5 /* SceneDelegate.swift */,
-				C120B6AB2B9B5C9C00422CE5 /* Assets.xcassets */,
-				C120B6AD2B9B5C9C00422CE5 /* LaunchScreen.storyboard */,
-				C120B6B02B9B5C9C00422CE5 /* Info.plist */,
-				C1DC4BCE2B9F2F4B00733BF7 /* API-Keys.plist */,
 			);
 			path = AIChatApp;
 			sourceTree = "<group>";
@@ -272,14 +304,14 @@
 			path = CustomCells;
 			sourceTree = "<group>";
 		};
-		C17EA6602BA1267700ADFF91 /* CoreData */ = {
+		C17EA6602BA1267700ADFF91 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
 				C17EA6612BA1268B00ADFF91 /* Models */,
 				C120B6A82B9B5C9A00422CE5 /* AIChatApp.xcdatamodeld */,
 				C17EA6622BA126A700ADFF91 /* ChatSaveManager.swift */,
 			);
-			path = CoreData;
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		C17EA6612BA1268B00ADFF91 /* Models */ = {
@@ -665,7 +697,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NX5WVK23N8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AIChatApp/Info.plist;
+				INFOPLIST_FILE = AIChatApp/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "AI Chat App";
 				INFOPLIST_KEY_NSCameraUsageDescription = "You can take photos to convert image to text";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the chat message. Audio recordings are discarded after transcription.";
@@ -698,7 +730,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NX5WVK23N8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AIChatApp/Info.plist;
+				INFOPLIST_FILE = AIChatApp/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "AI Chat App";
 				INFOPLIST_KEY_NSCameraUsageDescription = "You can take photos to convert image to text";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the chat message. Audio recordings are discarded after transcription.";
