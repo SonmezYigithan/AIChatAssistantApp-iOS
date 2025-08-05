@@ -9,16 +9,38 @@ import Alamofire
 
 final class NetworkManager {
     static let shared = NetworkManager()
+
     
-    func request<T: Codable>(_ type: T.Type, url: String, method: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders, completion: @escaping((Result<T,Error>)->())){
-        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+    /// Sends a Network Request
+    /// - Parameters:
+    ///   - type: Generic decodable type
+    ///   - url: url description
+    ///   - method: HTTP method
+    ///   - parameters: Query params
+    ///   - headers: header params
+    ///   - completion: <#completion description#>
+    func request<T: Codable>(
+        _ type: T.Type,
+        url: String,
+        method: HTTPMethod,
+        parameters: Parameters?,
+        headers: HTTPHeaders,
+        completion: @escaping((Result<T,Error>)->())
+    ) {
+        AF.request(
+            url,
+            method: .post,
+            parameters: parameters,
+            encoding: JSONEncoding.default,
+            headers: headers
+        )
             .validate()
             .responseDecodable(of: T.self) { response in
                 switch response.result {
                 case .success(let data):
                     completion(.success(data))
                 case .failure(let error):
-                    completion(.failure(error))
+                    completion(.failure(error ?? NetworkError.unknown))
                 }
             }
 //            .response(completionHandler: { results in
@@ -27,4 +49,8 @@ final class NetworkManager {
 //                }
 //            })
     }
+}
+
+enum NetworkError: Error {
+    case unknown
 }
