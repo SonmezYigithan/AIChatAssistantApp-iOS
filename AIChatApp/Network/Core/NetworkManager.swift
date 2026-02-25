@@ -40,7 +40,7 @@ final class NetworkManager {
                 case .success(let data):
                     completion(.success(data))
                 case .failure(let error):
-                    completion(.failure(error ?? NetworkError.unknown))
+                    completion(.failure(error))
                 }
             }
 //            .response(completionHandler: { results in

@@ -11,8 +11,6 @@ final class TabBar: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemYellow
-        
         let vc1 = UINavigationController(rootViewController: StoreView())
         let vc2 = UINavigationController(rootViewController: HomeView())
         let vc3 = UINavigationController(rootViewController: SettingsView())
