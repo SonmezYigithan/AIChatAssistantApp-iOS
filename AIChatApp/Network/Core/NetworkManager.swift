@@ -18,7 +18,6 @@ final class NetworkManager {
     ///   - method: HTTP method
     ///   - parameters: Query params
     ///   - headers: header params
-    ///   - completion: <#completion description#>
     func request<T: Codable>(
         _ type: T.Type,
         url: String,
