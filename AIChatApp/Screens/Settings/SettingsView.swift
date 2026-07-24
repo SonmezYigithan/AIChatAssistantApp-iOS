@@ -5,178 +5,202 @@
 //  Created by Yiğithan Sönmez on 8.03.2024.
 //
 
+import StoreKit
 import UIKit
 
-struct SettingsCell {
-    let name: String
-    let image: UIImage?
-    let link: String?
+private struct SettingsItem {
+    let title: String
+    let symbolName: String
+    let tintColor: UIColor
+    let action: SettingsAction
 }
 
-final class SettingsView: UIViewController {
+private enum SettingsAction {
+    case shareApp
+    case help
+    case rateApp
+    case openURL(String)
+}
+
+private enum SettingsSection: Int, CaseIterable {
+    case support
+    case moreApps
+
+    var title: String {
+        switch self {
+        case .support:
+            return "Support"
+        case .moreApps:
+            return "More Apps"
+        }
+    }
+}
+
+final class SettingsView: UITableViewController {
     private lazy var viewModel: SettingsViewModelProtocol = SettingsViewModel()
-    
-    private var settings = [SettingsCell]()
-    private var moreApps = [SettingsCell]()
-    
-    private let settingsLabel: UILabel = {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 23)
-        label.text = "Settings"
-        return label
-    }()
-    
-    private let settingsTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.separatorStyle = .none
-        tableView.layer.cornerRadius = 15
-        tableView.isScrollEnabled = false
-        tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
-        return tableView
-    }()
-    
-    private let moreAppsLabel: UILabel = {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 23)
-        label.text = "More Apps"
-        return label
-    }()
-    
-    private let moreAppsDescriptionLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .customGrayText
-        label.font = .systemFont(ofSize: 14)
-        label.text = "Would you like to check out our other \namazing apps?"
-        label.numberOfLines = 2
-        return label
-    }()
-    
-    private let moreAppsTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.separatorStyle = .none
-        tableView.isScrollEnabled = false
-        tableView.register(MoreAppsTableViewCell.self, forCellReuseIdentifier: MoreAppsTableViewCell.identifier)
-        return tableView
-    }()
-    
-    private let scrollView: UIScrollView = {
-        let view = UIScrollView()
-        return view
-    }()
-    
-    private let stackView: UIStackView = {
-        let stack = UIStackView()
-        stack.spacing = 25
-        stack.axis = .vertical
-        return stack
-    }()
-    
+
+    private let supportItems: [SettingsItem] = [
+        SettingsItem(title: "Share the App", symbolName: "square.and.arrow.up", tintColor: .systemBlue, action: .shareApp),
+        SettingsItem(title: "Help", symbolName: "questionmark.circle.fill", tintColor: .systemOrange, action: .help),
+        SettingsItem(title: "Rate Us", symbolName: "star.fill", tintColor: .systemYellow, action: .rateApp)
+    ]
+
+    private let moreAppItems: [SettingsItem] = [
+        SettingsItem(
+            title: "Game Listing App",
+            symbolName: "gamecontroller.fill",
+            tintColor: .systemBlue,
+            action: .openURL("https://github.com/SonmezYigithan/GameListingApp-iOS")
+        ),
+        SettingsItem(
+            title: "Shopping App",
+            symbolName: "cart.fill",
+            tintColor: .systemGreen,
+            action: .openURL("https://github.com/SonmezYigithan/ShoppingApp-iOS")
+        ),
+        SettingsItem(
+            title: "Pomodoro App",
+            symbolName: "timer",
+            tintColor: .systemRed,
+            action: .openURL("https://github.com/SonmezYigithan/PomodoroMenuBarApp-MacOS")
+        )
+    ]
+
+    init() {
+        super.init(style: .insetGrouped)
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareView()
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        settingsTableView.layoutIfNeeded()
-        settingsTableView.snp.updateConstraints { make in
-            make.height.equalTo(settingsTableView.contentSize.height)
-        }
-        
-        moreAppsTableView.layoutIfNeeded()
-        moreAppsTableView.snp.updateConstraints { make in
-            make.height.equalTo(moreAppsTableView.contentSize.height)
-        }
-    }
-    
+
     private func prepareView() {
-        view.backgroundColor = .systemBackground
-        view.addSubview(scrollView)
-        scrollView.addSubview(stackView)
-        stackView.addArrangedSubview(settingsLabel)
-        stackView.addArrangedSubview(settingsTableView)
-        stackView.addArrangedSubview(moreAppsLabel)
-        stackView.addArrangedSubview(moreAppsDescriptionLabel)
-        stackView.setCustomSpacing(15, after: moreAppsDescriptionLabel)
-        stackView.addArrangedSubview(moreAppsTableView)
-        
-        settingsTableView.dataSource = self
-        settingsTableView.delegate = self
-        moreAppsTableView.dataSource = self
-        moreAppsTableView.delegate = self
-        
-        settings = [SettingsCell(name: "Share The App", image: UIImage(systemName: "shareplay"), link: nil),
-                    SettingsCell(name: "Help", image: UIImage(systemName: "questionmark"), link: nil),
-                    SettingsCell(name: "Rate Us", image: UIImage(systemName: "star.fill"), link: nil),]
-        
-        moreApps = [SettingsCell(name: "Game Listing App", image: UIImage(systemName: "gamecontroller.fill"), link: "https://github.com/SonmezYigithan/GameListingApp-iOS"),
-                    SettingsCell(name: "Shopping App", image: UIImage(systemName: "cart.fill"), link: "https://github.com/SonmezYigithan/ShoppingApp-iOS"),
-                    SettingsCell(name: "Pomodoro App", image: UIImage(systemName: "timer"),link: "https://github.com/SonmezYigithan/PomodoroMenuBarApp-MacOS"),]
-        
-        settingsTableView.reloadData()
-        
-        setupConstraints()
-    }
-    
-    private func setupConstraints() {
-        scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        stackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(15)
-            make.width.equalTo(scrollView.snp.width).inset(15)
-        }
-        
-        settingsTableView.snp.makeConstraints { make in
-            make.height.equalTo(0)
-            make.width.equalToSuperview()
-        }
-        
-        moreAppsTableView.snp.makeConstraints { make in
-            make.height.equalTo(0)
-            make.width.equalToSuperview()
-        }
+        title = "Settings"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
+
+        view.backgroundColor = .systemGroupedBackground
+        tableView.backgroundColor = .systemGroupedBackground
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.reuseIdentifier)
+        tableView.cellLayoutMarginsFollowReadableWidth = true
     }
 }
 
-extension SettingsView: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == settingsTableView {
-            return settings.count
-        }else {
-            return moreApps.count
+extension SettingsView {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        SettingsSection.allCases.count
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        items(for: section).count
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        SettingsSection(rawValue: section)?.title
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.reuseIdentifier, for: indexPath)
+        let item = items(for: indexPath.section)[indexPath.row]
+
+        var configuration = UIListContentConfiguration.cell()
+        configuration.text = item.title
+        configuration.textProperties.font = .preferredFont(forTextStyle: .body)
+        configuration.image = UIImage(systemName: item.symbolName)
+        configuration.imageProperties.tintColor = item.tintColor
+        configuration.imageProperties.preferredSymbolConfiguration = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular)
+        configuration.imageToTextPadding = 12
+
+        cell.contentConfiguration = configuration
+        cell.accessoryType = item.usesDisclosureIndicator ? .disclosureIndicator : .none
+        cell.selectionStyle = .default
+        cell.backgroundColor = .secondarySystemGroupedBackground
+
+        return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        handle(items(for: indexPath.section)[indexPath.row].action)
+    }
+
+    private func items(for section: Int) -> [SettingsItem] {
+        switch SettingsSection(rawValue: section) {
+        case .support:
+            return supportItems
+        case .moreApps:
+            return moreAppItems
+        case .none:
+            return []
         }
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == settingsTableView {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.identifier, for: indexPath) as? SettingsTableViewCell else { return UITableViewCell() }
-            cell.configure(name: settings[indexPath.row].name, image: settings[indexPath.row].image)
-            cell.selectionStyle = .none
-            return cell
-        }else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MoreAppsTableViewCell.identifier, for: indexPath) as? MoreAppsTableViewCell else { return UITableViewCell() }
-            cell.configure(name: moreApps[indexPath.row].name, image: moreApps[indexPath.row].image)
-            cell.selectionStyle = .none
-            return cell
+
+    private func handle(_ action: SettingsAction) {
+        switch action {
+        case .shareApp:
+            shareApp()
+        case .help:
+            showHelp()
+        case .rateApp:
+            requestReview()
+        case .openURL(let link):
+            viewModel.clickedMoreAppsLink(link: link)
         }
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if tableView == settingsTableView {
-            return 60
-        }else {
-            return 70
-        }
+
+    private func shareApp() {
+        let appName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? "AIChatApp"
+        let activityViewController = UIActivityViewController(
+            activityItems: ["Check out \(appName)!"],
+            applicationActivities: nil
+        )
+        activityViewController.popoverPresentationController?.sourceView = view
+        activityViewController.popoverPresentationController?.sourceRect = CGRect(
+            x: view.bounds.midX,
+            y: view.bounds.midY,
+            width: 0,
+            height: 0
+        )
+
+        present(activityViewController, animated: true)
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == settingsTableView {
-            print("Clicked at Settings: \(indexPath.row)")
-        }else {
-            print("Clicked at MoreApp: \(indexPath.row)")
-            viewModel.clickedMoreAppsLink(link: moreApps[indexPath.row].link ?? "")
+
+    private func showHelp() {
+        let alertController = UIAlertController(
+            title: "Help",
+            message: "For support, please contact the developer from the app's project page.",
+            preferredStyle: .alert
+        )
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alertController, animated: true)
+    }
+
+    private func requestReview() {
+        guard let scene = view.window?.windowScene else {
+            return
         }
+
+        SKStoreReviewController.requestReview(in: scene)
+    }
+}
+
+private extension SettingsItem {
+    var usesDisclosureIndicator: Bool {
+        if case .openURL = action {
+            return true
+        }
+
+        return false
+    }
+}
+
+private extension UITableViewCell {
+    static var reuseIdentifier: String {
+        String(describing: UITableViewCell.self)
     }
 }

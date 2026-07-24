@@ -41,10 +41,6 @@ final class HistoryView: UIViewController {
         prepareView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-//        customSegmentedControl.selectSegment(index: 0)
-    }
-    
     private func prepareView() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -61,12 +57,13 @@ final class HistoryView: UIViewController {
     
     private func setupConstraints() {
         customSegmentedControl.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(200)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
+            make.leading.trailing.equalTo(view.layoutMarginsGuide)
+            make.height.equalTo(32)
         }
         
         chatHistoryTableView.snp.makeConstraints { make in
-            make.top.equalTo(customSegmentedControl.snp.bottom).offset(5)
+            make.top.equalTo(customSegmentedControl.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
